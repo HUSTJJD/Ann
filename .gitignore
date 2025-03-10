@@ -73,3 +73,5 @@ Plugins/**/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 .vsconfig
+Plugins/ThirdParty/UnLua/Source/UnLuaDefaultParamCollectorUbtPlugin/obj/Debug
+Plugins/ThirdParty/UnLua/Source/UnLuaDefaultParamCollectorUbtPlugin/obj/Development

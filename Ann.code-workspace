@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "Ann",
+			"path": "Content/Script"
+		},
+		{
+			"name": "UE",
+			"path": "Plugins/ThirdParty/UnLua/Intermediate/IntelliSense"
+		},
+		{
+			"name": "Log",
+			"path": "Saved/Logs"
+		}
+	],
+	"settings": {}
+}

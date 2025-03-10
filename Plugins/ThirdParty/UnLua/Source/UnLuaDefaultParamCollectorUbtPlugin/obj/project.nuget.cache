@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "trSqjFmsPXE=",
+  "success": true,
+  "projectFilePath": "D:\\learning\\Ann\\Plugins\\ThirdParty\\UnLua\\Source\\UnLuaDefaultParamCollectorUbtPlugin\\UnLuaDefaultParamCollectorUbtPlugin.ubtplugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\davidsjiang\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

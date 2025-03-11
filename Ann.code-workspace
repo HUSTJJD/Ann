@@ -16,9 +16,11 @@
 	"settings": {
 		"editor.formatOnSaveMode": "modificationsIfAvailable",
 		"cSpell.autoFormatConfigFile": true,
-		"editor.formatOnSave": true,
+		"editor.formatOnSave": false,
 		"lua_analyzer.codeLinting.luaVersion": "5.3",
-		"emmylua.lint.nameStyle": true
+		"[lua]": {
+			"editor.defaultFormatter": "tangzx.emmylua"
+		},
 	},
 	"extensions": {
 		"recommendations": [
@@ -26,11 +28,23 @@
 			"nilssoderman.ue-python",
 			"slevesque.shader",
 			"tangzx.emmylua",
-			"cppcxy.emmylua-codestyle",
 			"rog2.luacheck",
 			"stuartwang.luapanda",
 			"zxh404.vscode-proto3",
 			"eamodio.gitlens"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "emmylua_attach",
+				"request": "attach",
+				"name": "Attach UnrealEditor",
+				"pid": 0,
+				"processName": "UnrealEditor",
+				"captureLog": false
+			}
 		]
 	}
 }

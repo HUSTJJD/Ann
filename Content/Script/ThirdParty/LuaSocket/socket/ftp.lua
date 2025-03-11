@@ -56,7 +56,7 @@ end
 
 function metat.__index:login(user, password)
     self.try(self.tp:command("user", user or _M.USER))
-    local code, _ = self.try(self.tp:check{"2..", 331})
+    local code, _ = self.try(self.tp:check { "2..", 331 })
     if code == 331 then
         self.try(self.tp:command("pass", password or _M.PASSWORD))
         self.try(self.tp:check("2.."))
@@ -72,7 +72,7 @@ function metat.__index:pasv()
     self.try(a and b and c and d and p1 and p2, reply)
     self.pasvt = {
         address = string.format("%d.%d.%d.%d", a, b, c, d),
-        port = p1*256 + p2
+        port = p1 * 256 + p2
     }
     if self.server then
         self.server:close()
@@ -98,7 +98,6 @@ function metat.__index:epsv()
     return self.pasvt.address, self.pasvt.port
 end
 
-
 function metat.__index:port(address, port)
     self.pasvt = nil
     if not address then
@@ -108,7 +107,7 @@ function metat.__index:port(address, port)
         self.try(self.server:settimeout(_M.TIMEOUT))
     end
     local pl = math.mod(port, 256)
-    local ph = (port - pl)/256
+    local ph = (port - pl) / 256
     local arg = string.gsub(string.format("%s,%d,%d", address, ph, pl), "%.", ",")
     self.try(self.tp:command("port", arg))
     self.try(self.tp:check("2.."))
@@ -129,7 +128,6 @@ function metat.__index:eprt(family, address, port)
     return 1
 end
 
-
 function metat.__index:send(sendt)
     self.try(self.pasvt or self.server, "need port or pasv first")
     -- if there is a pasvt table, we already sent a PASV command
@@ -142,7 +140,7 @@ function metat.__index:send(sendt)
     local command = sendt.command or "stor"
     -- send the transfer command and check the reply
     self.try(self.tp:command(command, argument))
-    local code, _ = self.try(self.tp:check{"2..", "1.."})
+    local code, _ = self.try(self.tp:check { "2..", "1.." })
     -- if there is not a pasvt table, then there is a server
     -- and we already sent a PORT command
     if not self.pasvt then self:portconnect() end
@@ -175,7 +173,7 @@ function metat.__index:receive(recvt)
     if argument == "" then argument = nil end
     local command = recvt.command or "retr"
     self.try(self.tp:command(command, argument))
-    local code,reply = self.try(self.tp:check{"1..", "2.."})
+    local code, reply = self.try(self.tp:check { "1..", "2.." })
     if (code >= 200) and (code <= 299) then
         recvt.sink(reply)
         return 1
@@ -203,7 +201,7 @@ function metat.__index:type(type)
 end
 
 function metat.__index:greet()
-    local code = self.try(self.tp:check{"1..", "2.."})
+    local code = self.try(self.tp:check { "1..", "2.." })
     if string.find(code, "1..") then self.try(self.tp:check("2..")) end
     return 1
 end
@@ -226,11 +224,13 @@ end
 local function override(t)
     if t.url then
         local u = url.parse(t.url)
-        for i,v in base.pairs(t) do
+        for i, v in base.pairs(t) do
             u[i] = v
         end
         return u
-    else return t end
+    else
+        return t
+    end
 end
 
 local function tput(putt)
@@ -274,8 +274,11 @@ local function sput(u, body)
 end
 
 _M.put = socket.protect(function(putt, body)
-    if base.type(putt) == "string" then return sput(putt, body)
-    else return tput(putt) end
+    if base.type(putt) == "string" then
+        return sput(putt, body)
+    else
+        return tput(putt)
+    end
 end)
 
 local function tget(gett)
@@ -309,7 +312,7 @@ _M.command = socket.protect(function(cmdt)
     if type(cmdt.command) == "table" then
         local argument = cmdt.argument or {}
         local check = cmdt.check or {}
-        for i,cmd in ipairs(cmdt.command) do
+        for i, cmd in ipairs(cmdt.command) do
             f.try(f.tp:command(cmd, argument[i]))
             if check[i] then f.try(f.tp:check(check[i])) end
         end
@@ -322,8 +325,11 @@ _M.command = socket.protect(function(cmdt)
 end)
 
 _M.get = socket.protect(function(gett)
-    if base.type(gett) == "string" then return sget(gett)
-    else return tget(gett) end
+    if base.type(gett) == "string" then
+        return sget(gett)
+    else
+        return tget(gett)
+    end
 end)
 
 return _M

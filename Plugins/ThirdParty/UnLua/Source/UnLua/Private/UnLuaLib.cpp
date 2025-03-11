@@ -51,7 +51,7 @@ namespace UnLua
         static int HotReload(lua_State* L)
         {
 #if UNLUA_WITH_HOT_RELOAD
-            if (luaL_dostring(L, "require('UnLua.HotReload').reload()") != 0)
+            if (luaL_dostring(L, "require('Ann.HotReload').reload()") != 0)
             {
                 LogError(L);
             }
@@ -234,7 +234,7 @@ namespace UnLua
         {
             lua_newtable(L);
             luaL_setfuncs(L, UnLua_Functions, 0);
-            lua_pushstring(L, "Content/Script/?.lua;Plugins/UnLua/Content/Script/?.lua");
+            lua_pushstring(L, "Content/Script/?.lua");
             lua_setfield(L, -2, PACKAGE_PATH_KEY);
             return 1;
         }
@@ -242,30 +242,30 @@ namespace UnLua
         int Open(lua_State* L)
         {
             lua_register(L, "print", LogInfo);
-            luaL_requiref(L, "UnLua", LuaOpen, 1);
+            luaL_requiref(L, "Ann", LuaOpen, 1);
             luaL_dostring(L, R"(
-                setmetatable(UnLua, {
+                setmetatable(Ann, {
                     __index = function(t, k)
-                        local ok, result = pcall(require, "UnLua." .. tostring(k))
+                        local ok, result = pcall(require, "Ann." .. tostring(k))
                         if ok then
                             rawset(t, k, result)
                             return result
                         else
-                            t.LogWarn(string.format("failed to load module UnLua.%s\n%s", k, result))
+                            t.LogWarn(string.format("failed to load module Ann.%s\n%s", k, result))
                         end
                     end
                 })
             )");
 
 #if UNLUA_ENABLE_FTEXT
-            luaL_dostring(L, "UnLua.FTextEnabled = true");
+            luaL_dostring(L, "Ann.FTextEnabled = true");
 #else
-            luaL_dostring(L, "UnLua.FTextEnabled = false");
+            luaL_dostring(L, "Ann.FTextEnabled = false");
 #endif
 
 #if UNLUA_WITH_HOT_RELOAD
             luaL_dostring(L, R"(
-                pcall(function() _G.require = require('UnLua.HotReload').require end)
+                pcall(function() _G.require = require('Ann.HotReload').require end)
             )");
 #endif
 
@@ -276,8 +276,8 @@ namespace UnLua
 
         FString GetPackagePath(lua_State* L)
         {
-            lua_getglobal(L, "UnLua");
-            checkf(lua_istable(L, -1), TEXT("UnLuaLib not registered"));
+            lua_getglobal(L, "Ann");
+            checkf(lua_istable(L, -1), TEXT("AnnLib not registered"));
             lua_getfield(L, -1, PACKAGE_PATH_KEY);
             const auto PackagePath = lua_tostring(L, -1);
             checkf(PackagePath, TEXT("invalid PackagePath"));
@@ -287,8 +287,8 @@ namespace UnLua
 
         void SetPackagePath(lua_State* L, const FString& PackagePath)
         {
-            lua_getglobal(L, "UnLua");
-            checkf(lua_istable(L, -1), TEXT("UnLuaLib not registered"));
+            lua_getglobal(L, "Ann");
+            checkf(lua_istable(L, -1), TEXT("AnnLib not registered"));
             lua_pushstring(L, TCHAR_TO_UTF8(*PackagePath));
             lua_setfield(L, -2, PACKAGE_PATH_KEY);
             lua_pop(L, 2);

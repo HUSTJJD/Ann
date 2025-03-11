@@ -1,23 +1,23 @@
 {
-  "FileVersion": 3,
-  "EngineAssociation": "{FD131B2B-4FA4-1395-2D5C-7B8D347886B7}",
-  "Category": "",
-  "Description": "",
-  "Modules": [
-    {
-      "Name": "Ann",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    }
-  ],
-  "Plugins": [
-    {
-      "Name": "Gameplay",
-      "Enabled": true
-    }
-  ],
-  "TargetPlatforms": [],
-  "AdditionalRootDirectories": [],
-  "AdditionalPluginDirectories": [],
-  "EpicSampleNameHash": ""
+	"FileVersion": 3,
+	"EngineAssociation": "{FD131B2B-4FA4-1395-2D5C-7B8D347886B7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Ann",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Gameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		}
+	]
 }

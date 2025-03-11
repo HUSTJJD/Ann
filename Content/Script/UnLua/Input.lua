@@ -21,7 +21,7 @@ local function MakeLuaFunction(Module, Prefix, Handler, No)
         Module[Name] = Handler
         return Name
     end
-    
+
     return MakeLuaFunction(Module, Prefix, Handler, No + 1)
 end
 
@@ -47,7 +47,8 @@ function M.BindKey(Module, KeyName, KeyEvent, Handler, Args)
     Args = Args or {}
     Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
     local ModifierSuffix = GetModifierSuffix(Args)
-    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s%s", KeyName, KeyEvent, ModifierSuffix), Handler, 0)
+    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s%s", KeyName, KeyEvent, ModifierSuffix),
+        Handler, 0)
     local Bindings = Module.__UnLuaInputBindings
     table.insert(Bindings, function(Manager, Class)
         local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputKeyDelegateBinding)
@@ -71,7 +72,7 @@ function M.BindKey(Module, KeyName, KeyEvent, Handler, Args)
         Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
         Binding.FunctionNameToBind = FunctionName
         BindingObject.InputKeyDelegateBindings:Add(Binding)
-        
+
         Manager:Override(Class, "InputAction", FunctionName)
     end)
 end
@@ -102,7 +103,7 @@ function M.BindAction(Module, ActionName, KeyEvent, Handler, Args)
         Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
         Binding.FunctionNameToBind = FunctionName
         BindingObject.InputActionDelegateBindings:Add(Binding)
-        
+
         Manager:Override(Class, "InputAction", FunctionName)
     end)
 end
@@ -131,7 +132,7 @@ function M.BindAxis(Module, AxisName, Handler, Args)
         Binding.InputAxisName = AxisName
         Binding.FunctionNameToBind = FunctionName
         BindingObject.InputAxisDelegateBindings:Add(Binding)
-        
+
         Manager:Override(Class, "InputAxis", FunctionName)
     end)
 end
@@ -144,7 +145,7 @@ function M.PerformBindings(Module, Manager, Class)
 
     for _, Binding in ipairs(Bindings) do
         xpcall(Binding, function(Error)
-            UnLua.LogError(Error .. "\n" .. debug.traceback())
+            Ann.LogError(Error .. "\n" .. debug.traceback())
         end, Manager, Class)
     end
 end

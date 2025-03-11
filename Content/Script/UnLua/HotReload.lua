@@ -32,22 +32,22 @@ local dump = function(tbl, max_indent)
         if not indent then indent = 0 end
         if type(tbl) ~= "table" then return tostring(tbl) end
 
-        if(indent > max_indent) then return tostring(tbl) end
+        if (indent > max_indent) then return tostring(tbl) end
 
         if handled[tbl] then
             return ""
         end
         handled[tbl] = true
         local ret = rep(" ", indent) .. "{\r\n"
-        indent = indent + 2 
+        indent = indent + 2
         for k, v in pairs(tbl) do
             ret = ret .. rep(" ", indent)
             if type(k) == "number" then
                 ret = ret .. "[" .. k .. "] = "
             elseif type(k) == "string" then
-                ret = ret  .. k ..  " = "   
+                ret = ret .. k .. " = "
             else
-                ret = ret  .. tostring(k) ..  " = "   
+                ret = ret .. tostring(k) .. " = "
             end
             if type(v) == "number" then
                 ret = ret .. v .. ",\r\n"
@@ -71,7 +71,7 @@ end
 
 local print = function(...)
     if config.debug then
-        UnLua.Log("HotReload ", ...)
+        Ann.Log("HotReload ", ...)
     end
 end
 
@@ -95,7 +95,7 @@ end
 
 local function load_error_handler(err)
     local msg = err .. "\n" .. debug.traceback()
-    UnLua.LogError(msg)
+    Ann.LogError(msg)
 end
 
 local function call_hook(name, ...)
@@ -182,7 +182,7 @@ local function make_sandbox()
 
         for name, module in pairs(modules) do
             loaded[name] = module
-            loaded[module] = name     
+            loaded[module] = name
         end
     end
 
@@ -236,7 +236,7 @@ local function merge_objects(module_res)
                     elseif type(new) == "function" then
                         local i = 1
                         while true do
-                            local name,v = debug.getupvalue(new, i)
+                            local name, v = debug.getupvalue(new, i)
                             if name == nil or name == "" then
                                 break
                             end
@@ -246,10 +246,10 @@ local function merge_objects(module_res)
                                 print("SET UV :", tostring(new), name, tostring(uv.replaced_upvalue))
                                 debug.setupvalue(new, i, uv.replaced_upvalue)
                             end
-                        i = i + 1
+                            i = i + 1
                         end
                     end
-                end			
+                end
             end
         end
     end
@@ -297,7 +297,7 @@ local function collect_module_info(module)
     for k, v in pairs(module) do
         if sandbox.is_loaded(v) then
         elseif type(v) == "function" then
-            table.insert(ret, {name = k, value = v})
+            table.insert(ret, { name = k, value = v })
         end
     end
     return ret
@@ -311,7 +311,7 @@ local function match_module(new_module_info, old_module)
     for _, v in ipairs(new_module_info) do
         local oldFun = rawget(old_module, v.name)
         if oldFun and oldFun ~= v.value then
-            table.insert(ret, { [v.name] = { [oldFun] = v.value } } )
+            table.insert(ret, { [v.name] = { [oldFun] = v.value } })
         end
     end
 
@@ -349,7 +349,7 @@ local function match_upvalues(value_info_map, old_upvalues)
                                     replaced_upvalue = new_upvalue
                                 end
                             end
-    
+
                             if replaced_upvalue then
                                 ret[id] = { replaced_upvalue = replaced_upvalue }
                             end
@@ -467,7 +467,7 @@ local function update_global(value_map)
                         update_table(v)
                     end
                 end
-                i=i+1
+                i = i + 1
             end
         end
     end
@@ -490,7 +490,7 @@ local function update_modules(old_modules, new_modules, new_envs)
                 values = {},
                 old_module = old_module
             }
-            table.insert(moduleres.values, { [new_module] = { [old_module] = new_module } } )
+            table.insert(moduleres.values, { [new_module] = { [old_module] = new_module } })
             print("--------------Print ValueMap--------------")
             print(dump(moduleres.values, 6))
             result[i] = moduleres
@@ -501,7 +501,7 @@ local function update_modules(old_modules, new_modules, new_envs)
             local old_module_upvalues = collect_module_upvalues(old_module)
             print("--------------Print OldModuleUpValue--------------")
             print(dump(old_module_upvalues, 6))
-            
+
             local moduleres = {
                 values = {},
                 upvalue_map = {},
@@ -525,7 +525,7 @@ local function update_modules(old_modules, new_modules, new_envs)
             moduleres.upvalue_map = match_upvalues(moduleres.values, old_module_upvalues)
             print("--------------Print UVMap--------------")
             print(dump(moduleres.upvalue_map, 10))
-            
+
             result[i] = moduleres
         end
     end
@@ -568,7 +568,7 @@ local function reload_modules(module_names)
     local new_modules = {}
     local module_envs = {}
 
-    for _, module_name in ipairs(module_names) do		
+    for _, module_name in ipairs(module_names) do
         if loaded_modules[module_name] == nil then
             sandbox.require(module_name)
         else
@@ -586,9 +586,9 @@ local function reload_modules(module_names)
                 else
                     new_module = env
                 end
-                old_modules[#old_modules+1] = loaded_modules[module_name]
-                new_modules[#new_modules+1] = new_module
-                module_envs[#module_envs+1] = env
+                old_modules[#old_modules + 1] = loaded_modules[module_name]
+                new_modules[#new_modules + 1] = new_module
+                module_envs[#module_envs + 1] = env
                 call_hook("module_loaded", new_module, module_name, true)
             else
                 sandbox.exit()

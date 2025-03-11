@@ -13,5 +13,24 @@
 			"path": "Saved/Logs"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSaveMode": "modificationsIfAvailable",
+		"cSpell.autoFormatConfigFile": true,
+		"editor.formatOnSave": true,
+		"lua_analyzer.codeLinting.luaVersion": "5.3",
+		"emmylua.lint.nameStyle": true
+	},
+	"extensions": {
+		"recommendations": [
+			"ibm.output-colorizer",
+			"nilssoderman.ue-python",
+			"slevesque.shader",
+			"tangzx.emmylua",
+			"cppcxy.emmylua-codestyle",
+			"rog2.luacheck",
+			"stuartwang.luapanda",
+			"zxh404.vscode-proto3",
+			"eamodio.gitlens"
+		]
+	}
 }

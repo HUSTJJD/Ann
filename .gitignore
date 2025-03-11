@@ -74,3 +74,4 @@ Plugins/**/Intermediate/*
 DerivedDataCache/*
 .vsconfig
 Plugins/ThirdParty/UnLua/Source/UnLuaDefaultParamCollectorUbtPlugin/obj
+!Tools/**/*.exe

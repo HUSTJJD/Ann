@@ -1,4 +1,4 @@
-local Input = UnLua.Input
+local Input = Ann.Input
 
 local M = {}
 
@@ -13,7 +13,7 @@ local function MakeLuaFunction(Module, Prefix, Handler, No)
         Module[Name] = Handler
         return Name
     end
-    
+
     return MakeLuaFunction(Module, Prefix, Handler, No + 1)
 end
 
@@ -39,7 +39,8 @@ function M.BindAction(Module, ActionPath, TriggerEvent, Handler, Args)
     end
 
     local SignatureFunctionName = SignatureFunctionNames[InputAction.ValueType + 1]
-    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s", InputAction:GetName(), TriggerEvent), Handler, 0)
+    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s", InputAction:GetName(), TriggerEvent),
+        Handler, 0)
     local Bindings = Module.__UnLuaInputBindings
     table.insert(Bindings, function(Manager, Class)
         local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UEnhancedInputActionDelegateBinding)

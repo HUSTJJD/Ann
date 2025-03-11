@@ -33,7 +33,7 @@ void FLuaSocketModule::OnLuaEnvCreated(UnLua::FLuaEnv& Env)
     Env.AddBuiltInLoader(TEXT("socket"), luaopen_socket_core);
     Env.AddBuiltInLoader(TEXT("socket.core"), luaopen_socket_core);
     Env.AddBuiltInLoader(TEXT("mime.core"), luaopen_mime_core);
-    Env.DoString("UnLua.PackagePath = UnLua.PackagePath .. ';/Plugins/UnLuaExtensions/LuaSocket/Content/Script/?.lua'");
+    //Env.DoString("UnLua.PackagePath = UnLua.PackagePath .. ';/Plugins/UnLuaExtensions/LuaSocket/Content/Script/?.lua'");
 }
 
 IMPLEMENT_MODULE(FLuaSocketModule, LuaSocket)

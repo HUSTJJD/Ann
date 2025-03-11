@@ -12,7 +12,7 @@
 	],
 	"Plugins": [
 		{
-			"Name": "Gameplay",
+			"Name": "AnnGameplay",
 			"Enabled": true
 		},
 		{

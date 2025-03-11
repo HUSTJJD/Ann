@@ -10,7 +10,8 @@ include_files           = {
 }
 
 exclude_files           = {
-    'Content/Script/ThirdParty/**/*.lua'
+    'Content/Script/ThirdParty/**/*.lua',
+	'Content/Script/UnLua/**/*.lua',
 }
 
 max_line_length         = 500

@@ -234,7 +234,7 @@ namespace UnLua
         {
             lua_newtable(L);
             luaL_setfuncs(L, UnLua_Functions, 0);
-            lua_pushstring(L, "Content/Script/?/?.lua");
+            lua_pushstring(L, "Content/Script/?.lua");
             lua_setfield(L, -2, PACKAGE_PATH_KEY);
             return 1;
         }

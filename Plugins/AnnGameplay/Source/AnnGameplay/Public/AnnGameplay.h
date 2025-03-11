@@ -4,7 +4,7 @@
 
 #include "Modules/ModuleManager.h"
 
-class FGameplayModule : public IModuleInterface
+class FAnnGameplayModule : public IModuleInterface
 {
 public:
 

@@ -1,15 +1,15 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Gameplay.h"
+#include "AnnCore.h"
 
-#define LOCTEXT_NAMESPACE "FGameplayModule"
+#define LOCTEXT_NAMESPACE "FAnnCoreModule"
 
-void FGameplayModule::StartupModule()
+void FAnnCoreModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 }
 
-void FGameplayModule::ShutdownModule()
+void FAnnCoreModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
@@ -17,4 +17,4 @@ void FGameplayModule::ShutdownModule()
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FGameplayModule, Gameplay)
+IMPLEMENT_MODULE(FAnnCoreModule, AnnCore)

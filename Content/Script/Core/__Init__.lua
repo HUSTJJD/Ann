@@ -3,14 +3,14 @@ if Ann.Core then
 end
 
 Ann.Core = {}
-Ann.Core.EventManager = require("Core.Both.EventManager")
-Ann.Core.SceneManager = require("Core.Both.SceneManager").New()
+Ann.Core.EventManager = Ann.NewObject("Core.Both.EventManager")
+Ann.Core.SceneManager = Ann.NewObject("Core.Both.SceneManager")
 
 if Ann.Env.Role == Ann.Define.ERole.Server then
 	--TODO
 elseif Ann.Env.Role == Ann.Define.ERole.Client then
-	Ann.Core.SceneManager = require("Core.Both.UIManager")
-	Ann.Core.EventManager = require("Core.Both.HttpManager")
+	Ann.Core.SceneManager = Ann.NewObject("Core.Both.UIManager")
+	Ann.Core.EventManager = Ann.NewObject("Core.Both.HttpManager")
 else
 	Ann.LogError("Unsupported app role", Ann.Env.Role)
 end

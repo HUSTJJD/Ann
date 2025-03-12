@@ -23,6 +23,7 @@
 		"[lua]": {
 			"editor.defaultFormatter": "tangzx.emmylua"
 		},
+		"editor.wordWrap": "on",
 	},
 	"extensions": {
 		"recommendations": [

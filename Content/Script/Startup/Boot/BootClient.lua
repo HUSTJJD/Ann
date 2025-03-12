@@ -1,4 +1,4 @@
-local Boot = require("Startup.Boot.Boot")
+local Boot = require("Startup.Boot.BootBoth")
 local BootClient = Ann.Class("BootClient", Boot)
 
 function BootClient:Init()

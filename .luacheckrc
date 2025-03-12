@@ -4,6 +4,7 @@ globals                 = {
     'UnLua',
     'UE',
     'rapidjson',
+    "pass"
 }
 
 include_files           = {

@@ -4,7 +4,7 @@ local AnnGameInstance = UnLua.Class()
 ---Ann 启动
 ---@private
 function AnnGameInstance:ReceiveInit()
-	self.boot = require("Startup.Boot.Factory")
+	self.boot = require("Startup.Boot.BootFactory")
 	self.boot:Init()
 end
 

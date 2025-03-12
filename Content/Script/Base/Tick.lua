@@ -112,4 +112,4 @@ function Tick:Tick(deltaSeconds)
 	self.__LastTime = curTime
 end
 
-return Tick
+Ann.Tick = Tick.New()

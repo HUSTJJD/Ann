@@ -1,5 +1,4 @@
-local Boot = require("Startup.Boot.Boot")
-
+local Boot = require("Startup.Boot.BootBoth")
 local BootServer = Ann.Class("BootServer", Boot)
 function BootServer:Init()
 	self.CallSuper(self, "Init")

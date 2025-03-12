@@ -4,7 +4,6 @@ globals                 = {
     'UnLua',
     'UE',
     'rapidjson',
-    "pass"
 }
 
 include_files           = {
@@ -18,6 +17,7 @@ exclude_files           = {
 
 ignore = {
   '212',
+  '542',
 }
 
 max_line_length         = 500

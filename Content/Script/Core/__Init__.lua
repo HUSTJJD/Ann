@@ -7,7 +7,7 @@ Ann.Core.EventManager = require("Core.Both.EventManager")
 Ann.Core.SceneManager = require("Core.Both.SceneManager").New()
 
 if Ann.Env.Role == Ann.Define.ERole.Server then
-	pass()
+	--TODO
 elseif Ann.Env.Role == Ann.Define.ERole.Client then
 	Ann.Core.SceneManager = require("Core.Both.UIManager")
 	Ann.Core.EventManager = require("Core.Both.HttpManager")

@@ -1,12 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "Config",
-			"path": "Config"
-		},
-		{
 			"name": "Ann",
 			"path": "Content/Script"
+		},
+		{
+			"name": "Config",
+			"path": "Config"
 		},
 		{
 			"name": "UE",
@@ -19,9 +19,7 @@
 	],
 	"settings": {
 		"editor.formatOnSaveMode": "modificationsIfAvailable",
-		"cSpell.autoFormatConfigFile": true,
 		"editor.formatOnSave": false,
-		"lua_analyzer.codeLinting.luaVersion": "5.3",
 		"[lua]": {
 			"editor.defaultFormatter": "tangzx.emmylua"
 		},
@@ -32,8 +30,6 @@
 			"nilssoderman.ue-python",
 			"slevesque.shader",
 			"tangzx.emmylua",
-			"rog2.luacheck",
-			"stuartwang.luapanda",
 			"zxh404.vscode-proto3",
 			"eamodio.gitlens"
 		]

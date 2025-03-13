@@ -1,21 +1,30 @@
 #!/bin/bash
 
-files=$(git status --porcelain | awk '/\.lua$/ {print $2}')
+luafiles=$(git status --porcelain | awk '/\.lua$/ {print $2}')
+cxxfiles=$(git status --porcelain | awk '/\.(cpp|h|c|hpp|cc)$/ {print $2}')
 
-if [ -z "$files" ]; then
+if [ -z "$luafiles" ] && [ -z "$cxxfiles" ]; then
     exit 0
 fi
 
-echo "$files" | while read -r file; do
-    # 检查文件是否存在
-    if [ ! -f "$file" ]; then
-        continue
-    fi
-    Tools/GitHook/stylua "$file"
-    Tools/GitHook/luacheck "$file"
-    ret="$?"
-    if [ "$ret" != 0 ]; then
-        exit 1
-    fi
+# 处理Lua文件
+if [ -n "$luafiles" ]; then
+    while read -r file; do
+        [ ! -f "$file" ] && continue
+        echo "🔧 Formatting Lua: $file"
+        Tools/GitHook/stylua --verify "$file"
+        if ! Tools/GitHook/luacheck --codes --formatter=default "$file"; then
+            echo "❌ Lua check failed"
+            exit 1
+        fi
+    done <<<"$luafiles"
+fi
 
-done
+# 处理C++/头文件（合并处理）
+if [ -n "$cxxfiles" ]; then
+    while read -r file; do
+        [ ! -f "$file" ] && continue
+        echo "🔧 Formatting C++: $file"
+        Tools/GitHook/clang-format --assume-filename=.clang-format -i "$file"
+    done <<<"$cxxfiles"
+fi

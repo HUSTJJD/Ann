@@ -42,6 +42,9 @@
   },
   "workspace": {
     "ignoreDir": [
+      "Content/Script/ThirdParty",
+      "Content/Script/UnLua",
+      "Plugins"
     ],
     "ignoreGlobs": [
     ],

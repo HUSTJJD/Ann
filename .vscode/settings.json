@@ -6,15 +6,21 @@
     },
     "editor.wordWrap": "on",
     "files.exclude": {
+        ".vs":true,
+        "Binaries":true,
+        "Build":true,
+        "DerivedDataCache":true,
+        "Intermediate":true,
         "LICENSE": true,
         "Plugins": true,
         "Source": true,
-        "Content/[!Script/]**": true,
+        "Saved/[!Logs]**":true,
+        "Content/[!Script]**": true,
     },
     "files.readonlyInclude": {
         "IntelliSense/**": true,
+        "Saved/Logs**": true,
     },
     "search.exclude": {},
-    "explorer.excludeGitIgnore": true,
     "formatFiles.extensionsToInclude": "**/*.lua",
 }

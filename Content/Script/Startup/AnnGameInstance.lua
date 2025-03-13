@@ -1,10 +1,11 @@
 ---@class AnnGameInstance Lua 入口
 local AnnGameInstance = UnLua.Class()
+require("Base.__Init__")
 
 ---Ann 启动
 ---@private
 function AnnGameInstance:ReceiveInit()
-	self.boot = require("Startup.Boot.BootFactory")
+	self.boot = Ann.NewObject("Startup.Boot")
 	self.boot:Init()
 end
 

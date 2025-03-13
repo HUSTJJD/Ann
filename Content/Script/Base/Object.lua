@@ -41,23 +41,27 @@ function Object:Reset()
 end
 
 ---@public
-function Object:OnInit() end
+function Object.OnInit() end
 
 ---@public
-function Object:OnDestory() end
+function Object.OnDestory() end
 
 ---@public
-function Object:OnReset() end
+function Object.OnReset() end
 
 ---@public
 ---@param deltaSeconds number 时间间隔
 -- function Object:OnTick(deltaSeconds) end
 
 Ann.Object = Object
-Ann.NewObject = function(modulePath)
-	return function(...)
-		local module = require(modulePath)
-		local _, obj = xpcall(module.New, Ann.LogError, ...)
-		return obj
+--- Ann 创建对象
+---@param modulePath string
+Ann.NewObject = function(modulePath, ...)
+	local module = require(modulePath)
+	if not module then
+		Ann.LogError("Ann NewObject invalid modulePath", modulePath)
+		return
 	end
+	local _, obj = xpcall(module.New, Ann.LogError, ...)
+	return obj
 end

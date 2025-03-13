@@ -54,9 +54,11 @@ function Object.OnReset() end
 -- function Object:OnTick(deltaSeconds) end
 
 Ann.Object = Object
+
 --- Ann 创建对象
----@param modulePath string
-Ann.NewObject = function(modulePath, ...)
+---@param modulePath string module路径
+---@return table | nil AnnObjecrt 对象
+local function NewObject(modulePath, ...)
 	local module = require(modulePath)
 	if not module then
 		Ann.LogError("Ann NewObject invalid modulePath", modulePath)
@@ -65,3 +67,5 @@ Ann.NewObject = function(modulePath, ...)
 	local _, obj = xpcall(module.New, Ann.LogError, ...)
 	return obj
 end
+
+Ann.NewObject = NewObject

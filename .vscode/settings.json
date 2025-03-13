@@ -16,4 +16,5 @@
     },
     "search.exclude": {},
     "explorer.excludeGitIgnore": true,
+    "formatFiles.extensionsToInclude": "**/*.lua",
 }

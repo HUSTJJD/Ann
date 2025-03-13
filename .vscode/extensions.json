@@ -5,6 +5,7 @@
         "slevesque.shader",
         "tangzx.emmylua",
         "zxh404.vscode-proto3",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "jbockle.jbockle-format-files"
     ]
 }

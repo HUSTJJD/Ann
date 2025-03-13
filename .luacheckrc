@@ -7,15 +7,18 @@ globals                 = {
 }
 
 include_files           = {
-    'Content/Script/**/*.lua'
+    'Content/Script/**/*.lua',
 }
 
 exclude_files           = {
+    'Content/Script/ThirdParty/**/*.lua',
+    'Content/Script/UnLua/**/*.lua',
 }
 
-ignore = {
+ignore                  = {
     '212/self', --Unused Argument "self"
-    '542', --empty if branch
+    '212/...',  --Unused Argument "..."
+    '542',      --empty if branch
 }
 
 max_line_length         = 500

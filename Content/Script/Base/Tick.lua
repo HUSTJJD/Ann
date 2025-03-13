@@ -76,14 +76,14 @@ end
 
 function Tick:ClearObjRef(obj)
 	for i = #self.TickerList, 1, -1 do
-		local _ticker = self.TickerList[i]
-		if _ticker.Obj == obj then
+		local ticker = self.TickerList[i]
+		if ticker.Obj == obj then
 			table.remove(self.TickerList, i)
 		end
 	end
 	for i = #self.TimerList, 1, -1 do
-		local _timer = self.TimerList[i]
-		if _timer.Obj == obj then
+		local timer = self.TimerList[i]
+		if timer.Obj == obj then
 			table.remove(self.TimerList, i)
 		end
 	end

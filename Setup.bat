@@ -1,5 +1,7 @@
 @echo off
 
+# install-hooks
+
 setlocal enabledelayedexpansion
 
 if not exist ".git" (

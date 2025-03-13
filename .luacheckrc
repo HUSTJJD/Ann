@@ -16,8 +16,6 @@ exclude_files           = {
 }
 
 ignore = {
-  '212',
-  '542',
 }
 
 max_line_length         = 500

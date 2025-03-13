@@ -11,11 +11,11 @@ include_files           = {
 }
 
 exclude_files           = {
-    'Content/Script/ThirdParty/**/*.lua',
-	'Content/Script/UnLua/**/*.lua',
 }
 
 ignore = {
+    '212/self', --Unused Argument "self"
+    '542', --empty if branch
 }
 
 max_line_length         = 500

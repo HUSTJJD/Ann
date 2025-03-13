@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "emmylua_attach",
+            "request": "attach",
+            "name": "Attach UnrealEditor",
+            "pid": 0,
+            "processName": "UnrealEditor",
+            "captureLog": false
+        }
+    ]
+}

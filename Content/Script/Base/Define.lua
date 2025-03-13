@@ -11,7 +11,10 @@ Define.ELogVerbosity = {
 Define.EPlatform = {
 	Android = "Android",
 	IOS = "IOS",
+	OpenHarmony = "OpenHarmony",
 	Windows = "Windows",
+	Linux = "Linux",
+	MacOS = "MacOS",
 }
 
 Define.ERole = {

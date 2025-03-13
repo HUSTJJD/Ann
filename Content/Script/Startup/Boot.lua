@@ -1,6 +1,7 @@
 local BootBoth = Ann.Class("BootBoth")
 
 function BootBoth:Init()
+	require("Core.__Init__")
 	self.bTick = Ann.Env.bEnableTick
 	if self.bTick then
 		Ann.Tick:Init()

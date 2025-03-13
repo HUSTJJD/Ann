@@ -37,21 +37,17 @@
     "requireLikeFunction": [],
     "frameworkVersions": [],
     "extensions": [
-      ".lua"
     ],
     "requirePattern": []
   },
   "workspace": {
     "ignoreDir": [
-      "Content/Script/ThirdParty",
-      "Content/Script/UnLua"
     ],
     "ignoreGlobs": [
-      "**/*.uasset",
-      "**/*.log"
     ],
     "library": [],
     "workspaceRoots": [
+      "Content/Script/"
     ],
     "encoding": "utf-8",
     "moduleMap": [],

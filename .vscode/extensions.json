@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ibm.output-colorizer",
+        "nilssoderman.ue-python",
+        "slevesque.shader",
+        "tangzx.emmylua",
+        "zxh404.vscode-proto3",
+        "eamodio.gitlens"
+    ]
+}

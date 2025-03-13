@@ -1,0 +1,19 @@
+{
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnSave": false,
+    "[lua]": {
+        "editor.defaultFormatter": "tangzx.emmylua"
+    },
+    "editor.wordWrap": "on",
+    "files.exclude": {
+        "LICENSE": true,
+        "Plugins": true,
+        "Source": true,
+        "Content/[!Script/]**": true,
+    },
+    "files.readonlyInclude": {
+        "IntelliSense/**": true,
+    },
+    "search.exclude": {},
+    "explorer.excludeGitIgnore": true,
+}

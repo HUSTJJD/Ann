@@ -44,7 +44,7 @@ void FUnLuaIntelliSenseGenerator::Initialize()
     if (bInitialized)
         return;
 
-    OutputDir = IPluginManager::Get().FindPlugin("UnLua")->GetBaseDir() + "/Intermediate/IntelliSense";
+    OutputDir = FPaths::ProjectDir() + "/IntelliSense";
 
     FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>(TEXT("AssetRegistry"));
     AssetRegistryModule.Get().OnAssetAdded().AddRaw(this, &FUnLuaIntelliSenseGenerator::OnAssetAdded);

@@ -1,23 +1,31 @@
 {
-	"FileVersion": 3,
-	"EngineAssociation": "{12D1A55F-4B0B-6F15-0801-49AF79F4FD77}",
-	"Category": "",
-	"Description": "",
-	"Modules": [
-		{
-			"Name": "Ann",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
-	],
-	"Plugins": [
-		{
-			"Name": "AnnGameplay",
-			"Enabled": true
-		},
-		{
-			"Name": "GameplayAbilities",
-			"Enabled": true
-		}
-	]
+  "FileVersion": 3,
+  "EngineAssociation": "{12D1A55F-4B0B-6F15-0801-49AF79F4FD77}",
+  "Category": "",
+  "Description": "",
+  "Modules": [
+    {
+      "Name": "Ann",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "AnnGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "VisualStudioTools",
+      "Enabled": true
+    }
+  ],
+  "TargetPlatforms": [],
+  "AdditionalRootDirectories": [],
+  "AdditionalPluginDirectories": [],
+  "EpicSampleNameHash": ""
 }

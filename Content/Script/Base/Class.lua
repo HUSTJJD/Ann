@@ -18,7 +18,7 @@ end
 ---Ann Lua 类定义
 ---@public
 ---@param clsName string 类名
----@vararg table | function 基类
+---@vararg table|func 基类
 local function Class(clsName, ...)
 	local cls = { __cname = clsName }
 	local supers = { ... }
@@ -79,6 +79,7 @@ end
 ---@public
 ---@param A table Class or Object A
 ---@param B table Class or Object B
+---@return boolean
 local function IsA(A, B)
 	local recursionIsA
 	recursionIsA = function(clsA, clsB)

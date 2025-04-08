@@ -1,3 +1,4 @@
+---@class Tick 计时器
 local Tick = Ann.Class("Tick")
 
 local function Container(interval, obj, func, delay, ...)

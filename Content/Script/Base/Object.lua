@@ -1,3 +1,4 @@
+---@class Object 基类
 local Object = Ann.Class("Object")
 
 local function IsMistakeRole(ObjectType)
@@ -8,6 +9,7 @@ local function IsMistakeRole(ObjectType)
 	return false
 end
 
+---构造函数
 ---@private
 function Object:Ctor(...)
 	self.__TickInterval = 0
@@ -17,13 +19,15 @@ function Object:Ctor(...)
 	if IsMistakeRole(self.__Role) then
 		self:Destory()
 		Ann.LogError(self.__cname, self.__Role, "Object Ctor Error, terrible Role")
-		return
+		return false
 	end
 	if self.__bEnableTick then
 		Ann.Tick:AddLoopTicker(self.__TickInterval, self, self.OnTick)
 	end
+	return true
 end
 
+---析构函数
 ---@public
 function Object:Destory()
 	self:OnDestory()
@@ -40,12 +44,15 @@ function Object:Reset()
 	end
 end
 
+---初始化
 ---@public
 function Object.OnInit() end
 
+---销毁
 ---@public
 function Object.OnDestory() end
 
+---重置
 ---@public
 function Object.OnReset() end
 
@@ -57,7 +64,7 @@ Ann.Object = Object
 
 --- Ann 创建对象
 ---@param modulePath string module路径
----@return table | nil AnnObjecrt 对象
+---@return table|nil AnnObjecrt 对象
 local function NewObject(modulePath, ...)
 	local module = require(modulePath)
 	if not module then

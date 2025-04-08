@@ -1,5 +1,7 @@
----@class 全局定义
+---@class Define 全局定义
 ---@field ELogVerbosity table 日志级别
+---@field EPlatform table 平台
+---@field ERole table App角色
 local Define = {}
 
 Define.ELogVerbosity = {

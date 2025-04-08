@@ -12,7 +12,7 @@ local function Print(func, verbosity, ...)
 				table.insert(out, tostring(v))
 			end
 		end
-		func(table.concat(out, " "))
+		func(rapidjson.encode(out))
 	else
 		func(...)
 	end

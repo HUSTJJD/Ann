@@ -80,3 +80,4 @@ IntelliSense/
 *.pdb
 *.exp
 .idea/.idea.Ann/.idea
+*.user

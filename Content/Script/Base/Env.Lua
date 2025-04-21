@@ -1,8 +1,11 @@
 ---@class Env 环境变量
 ---@field LogVerbosity int 当前日志级别
+---@field LogTable boolean 日志是否打印table
 ---@field Platform string  当前的设备平台
+---@field Role number 当前客户端角色
 ---@field bServer boolean 是否服务器
 ---@field bClient boolean 是否客户端
+---@field bEnableTick boolean 是否开启Tick
 local Env = {
     EnvValue = {}
 }

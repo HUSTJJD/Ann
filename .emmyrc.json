@@ -7,23 +7,24 @@
     "callSnippet": true,
     "postfix": "@"
   },
-  "signature": {
-    "detailSignatureHelper": true
-  },
   "diagnostics": {
     "disable": [
+      "duplicate-type"
     ],
+    "enable": true,
     "globals": [
-        "Ann",
-        "UnLua",
-        "UE",
-        "rapidjson"
+      "Ann",
+      "UnLua",
+      "UE",
+      "rapidjson"
     ],
     "globalsRegex": [],
-    "severity": {
-    },
-    "enables": [
-    ]
+    "severity": {},
+    "enables": [],
+    "diagnosticInterval": null
+  },
+  "signature": {
+    "detailSignatureHelper": true
   },
   "hint": {
     "enable": true,
@@ -36,8 +37,7 @@
     "version": "Lua5.4",
     "requireLikeFunction": [],
     "frameworkVersions": [],
-    "extensions": [
-    ],
+    "extensions": [],
     "requirePattern": []
   },
   "workspace": {
@@ -46,32 +46,40 @@
       "Content/Script/UnLua",
       "Plugins"
     ],
-    "ignoreGlobs": [
-    ],
+    "ignoreGlobs": [],
     "library": [],
     "workspaceRoots": [
       "Content/Script/"
     ],
+    "preloadFileSize": 0,
     "encoding": "utf-8",
     "moduleMap": [],
-    "reindexDuration": 5000
+    "reindexDuration": 5000,
+    "enableReindex": false
   },
   "resource": {
-    "paths": [
-    ]
+    "paths": []
   },
   "codeLens": {
     "enable": true
   },
   "strict": {
     "requirePath": false,
-    "typeCall": true
+    "typeCall": true,
+    "arrayIndex": true
   },
-  "hover": {
+  "semanticTokens": {
     "enable": true
   },
   "references": {
     "enable": true,
-    "fuzzy_search": true
+    "fuzzySearch": true,
+    "shortStringSearch": false
+  },
+  "hover": {
+    "enable": true
+  },
+  "documentColor": {
+    "enable": true
   }
 }

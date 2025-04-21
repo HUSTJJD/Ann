@@ -1,22 +1,23 @@
-local BootBoth = Ann.Class("BootBoth")
+---@class Boot
+local Boot = Ann.Class("Boot")
 
-function BootBoth:Init()
+function Boot:Init()
 	self.bTick = Ann.Env.bEnableTick
 	if self.bTick then
 		Ann.Tick:Init()
 	end
 end
 
-function BootBoth:Shutdown()
+function Boot:Shutdown()
 	if self.bTick then
 		Ann.Tick:Shutdown()
 	end
 end
 
-function BootBoth:Tick()
+function Boot:Tick()
 	if self.bTick then
 		Ann.Tick:Tick()
 	end
 end
 
-return BootBoth
+return Boot

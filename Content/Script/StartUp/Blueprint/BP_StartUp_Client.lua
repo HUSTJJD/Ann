@@ -2,7 +2,7 @@
 local BP_StartUp_Client = UnLua.Class()
 
 function BP_StartUp_Client:ReceiveBeginPlay()
-	Ann.LogError("BP_StartUp_Client:ReceiveBeginPlay", Ann)
+    Ann.GameInstance:StartUp()
 end
 
 function BP_StartUp_Client:ReceiveEndPlay() end

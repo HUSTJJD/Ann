@@ -1,2 +1,2 @@
-rapidjson = require('rapidjson')
-pb = require('pb')
+rapidjson = require("rapidjson")
+pb = require("pb")

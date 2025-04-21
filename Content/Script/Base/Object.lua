@@ -63,7 +63,9 @@ function Object.OnReset(...) end
 
 ---@public
 ---@param deltaSeconds number 时间间隔
-function Object:OnTick(deltaSeconds) Ann.LogWarn('Unused Tick Function, Please Remove It!', self.__cname, deltaSeconds) end
+function Object:OnTick(deltaSeconds)
+	Ann.LogWarn("Unused Tick Function, Please Remove It!", self.__cname, deltaSeconds)
+end
 
 local Singletons = {}
 

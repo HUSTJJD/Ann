@@ -19,11 +19,20 @@
 			"Name": "AnnCore",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
-		}
+		},
+        {
+		"Name": "AnnGameplay",
+		"Type": "Runtime",
+		"LoadingPhase": "Default"
+	    }
 	],
 	"Plugins": [
 		{
 			"Name": "UnLua",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
 			"Enabled": true
 		}
 	]

@@ -37,6 +37,7 @@ local function CustomIndex(_, k)
 end
 
 Env.Regist("LogVerbosity", Ann.Define.ELogVerbosity.Log, true)
+Env.Regist("LogTable", true, true)
 Env.Regist("Platform", Ann.Define.EPlatform.Windows, true)
 Env.Regist("Role", Ann.Define.ERole.Client, true)
 Env.Regist("bServer", Env.Role == Ann.Define.ERole.Server, true)

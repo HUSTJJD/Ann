@@ -12,10 +12,6 @@
   ],
   "Plugins": [
     {
-      "Name": "AnnGameplay",
-      "Enabled": true
-    },
-    {
       "Name": "GameplayAbilities",
       "Enabled": true
     },

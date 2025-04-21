@@ -16,8 +16,8 @@ Ann.Core.SceneManager = Ann.NewObject("Core.Both.SceneManager")
 if Ann.Env.Role == Ann.Define.ERole.Server then
 	--TODO
 elseif Ann.Env.Role == Ann.Define.ERole.Client then
-	Ann.Core.UIManager = Ann.NewObject("Core.Both.UIManager")
-	Ann.Core.HttpManager = Ann.NewObject("Core.Both.HttpManager")
+	Ann.Core.UIManager = Ann.NewObject("Core.Client.UIManager")
+	Ann.Core.HttpManager = Ann.NewObject("Core.Client.HttpManager")
 else
 	Ann.LogError("Unsupported app role", Ann.Env.Role)
 end

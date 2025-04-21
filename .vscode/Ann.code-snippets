@@ -24,9 +24,9 @@
 		"scope": "lua"
 	},
 	"UnLuaClass": {
-		"prefix": "UnLuaClass",
+		"prefix": "UEClass",
 		"body": [
-			"---@class ${1:${TM_FILENAME/(.*)\\.[a-z]+/$1/i}}\nlocal $1 = UnLua.Class(${2| ,\"\"|}$3)\n\nreturn $1"
+			"---@class ${1:${TM_FILENAME/(.*)\\.[a-z]+/$1/i}}\nlocal $1 = UnLua.Class(${2| ,\"\"|})\n\n--function $1:ReceiveBeginPlay()\n\n--end\n\n--function $1:ReceiveEndPlay()\n\n--end${3| ,\n\n--function $1:ReceiveEndPlay()\n\n--end|}\n\nreturn $1"
 		],
 		"description": "新建 UnLua Class",
 		"scope": "lua"

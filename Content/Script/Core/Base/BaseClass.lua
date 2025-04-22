@@ -1,4 +1,8 @@
 ---@class BaseClass 基类
+---@field __TickInterval int Tick频率
+---@field __bEnableTick boolean 是否开启Tick
+---@field __bSingleton boolean 是否单例
+---@field __Role int 对象角色
 local BaseClass = Ann.Class("BaseClass")
 
 local function CheckObjetRole(ObjectType)

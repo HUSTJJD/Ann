@@ -28,3 +28,5 @@ if [ -n "$cxxfiles" ]; then
         Tools/GitHook/clang-format --assume-filename=.clang-format -i "$file"
     done <<<"$cxxfiles"
 fi
+
+git add -u

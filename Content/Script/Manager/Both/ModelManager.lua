@@ -3,18 +3,14 @@ local ModelManager = Ann.Class("ModelManager", Ann.BaseClass)
 
 --- 构造
 function ModelManager:OnInit()
-    self.__bSingleton = true
-    self.__Role = Ann.Define.ERole.Both
+	self.__bSingleton = true
+	self.__Role = Ann.Define.ERole.Both
 end
 
 --- 析构
-function ModelManager:OnDestory()
-
-end
+function ModelManager:OnDestory() end
 
 --- 重置
-function ModelManager:OnReset()
-
-end
+function ModelManager:OnReset() end
 
 return ModelManager

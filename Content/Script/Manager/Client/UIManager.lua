@@ -1,11 +1,9 @@
----@class UIManager
-local UIManager = Ann.Class("UIManager", Ann.Object)
+---@class UIManager : BaseClass
+local UIManager = Ann.Class("UIManager", Ann.BaseClass)
 
 ---@overload fun():void 构造
 function UIManager:OnInit()
-	--self.__TickInterval = 0
-	--self.__bEnableTick = false
-	--self.__Role = Ann.Define.ERole.Client
+	self.__bSingleton = true
 end
 
 ---@overload fun():void 析构

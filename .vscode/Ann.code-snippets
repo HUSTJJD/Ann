@@ -18,7 +18,7 @@
 	"AnnClass": {
 		"prefix": "AnnClass",
 		"body": [
-			"---@class ${1:${TM_FILENAME/(.*)\\.[a-z]+/$1/i}}\nlocal $1 = Ann.Class(\"$1\", Ann.Object)\n\n---@overload fun():void 构造\nfunction $1:OnInit()\n${2|\t,\tself.__bEnableTick = true\n\tself.__TickInterval = 0,--(default)self.__bEnableTick = false|}\n${3|\t,\tself.__Role = Ann.Define.ERole.Server,\tself.__Role = Ann.Define.ERole.Both,--(default)self.__Role = Ann.Define.ERole.Client|}$5\nend\n\n---@overload fun():void 析构\nfunction $1:OnDestory()\n\nend\n\n---@overload fun():void 重置\nfunction $1:OnReset()\n\nend\n${4| ,---@overload fun(deltaSeconds:number):void 时钟\n--(default)function $1:OnTick(deltaSeconds)\n\n--end\n|}\nreturn $1"
+			"---@class ${1:${TM_FILENAME/(.*)\\.[a-z]+/$1/i}} : Object\nlocal $1 = Ann.Class(\"$1\", Ann.Object)\n\n--- 构造\nfunction $1:OnInit()\n${2|\t,\tself.__bEnableTick = true\n\tself.__TickInterval = 0,--(default)self.__bEnableTick = false|}\n${3|\t,\tself.__bSingleton = true,--(default)self.__bSingleton = false|}\n${4|\t,\tself.__Role = Ann.Define.ERole.Server,\tself.__Role = Ann.Define.ERole.Both,--(default)self.__Role = Ann.Define.ERole.Client|}$6\nend\n\n--- 析构\nfunction $1:OnDestory()\n\nend\n\n--- 重置\nfunction $1:OnReset()\n\nend\n${5| ,---@overload fun(deltaSeconds:number):void 时钟\n--(default)function $1:OnTick(deltaSeconds)\n\n--end\n|}\nreturn $1"
 		],
 		"description": "新建 Ann Class",
 		"scope": "lua"

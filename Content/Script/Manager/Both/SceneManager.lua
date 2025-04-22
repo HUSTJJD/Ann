@@ -1,10 +1,9 @@
----@class SceneManager
-local SceneManager = Ann.Class("SceneManager", Ann.Object)
+---@class SceneManager : BaseClass
+local SceneManager = Ann.Class("SceneManager", Ann.BaseClass)
 
 ---@overload fun():void 构造
 function SceneManager:OnInit()
-	--self.__TickInterval = 0
-	--self.__bEnableTick = false
+	self.__bSingleton = true
 	self.__Role = Ann.Define.ERole.Both
 end
 

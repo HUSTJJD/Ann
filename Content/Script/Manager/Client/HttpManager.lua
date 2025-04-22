@@ -1,11 +1,9 @@
----@class HttpManager
-local HttpManager = Ann.Class("HttpManager", Ann.Object)
+---@class HttpManager : BaseClass
+local HttpManager = Ann.Class("HttpManager", Ann.BaseClass)
 
 ---@overload fun():void 构造
 function HttpManager:OnInit()
-	--self.__TickInterval = 0
-	--self.__bEnableTick = false
-	--self.__Role = Ann.Define.ERole.Client
+	self.__bSingleton = true
 end
 
 ---@overload fun():void 析构

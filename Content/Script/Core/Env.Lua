@@ -29,7 +29,7 @@ end
 local function CustomIndex(_, k)
     local property = Env.EnvValue[k]
     if property == nil then
-        return nil
+        return
     end
     local value = property.Value
     if type(value) == "function" then

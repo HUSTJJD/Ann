@@ -1,25 +1,22 @@
-if Ann.Core then
-	return
-end
+---@class Ann 全局表
+---@field Class fun(clsName: string, ...):table
+---@field IsA fun(A: table, B: table):boolean
+---@field Define Define
+---@field Env Env
+---@field Log fun(...):nil
+---@field LogWarn fun(...):nil
+---@field LogError fun(...):nil
+---@field BaseClass BaseClass
+---@field NewObject fun(modulePath: string, ...):BaseClass|nil
+---@field Tick Tick
+_G.Ann = _G.Ann or {}
+require("Core.Class")
+require("Core.Define")
+require("Core.Logger")
+require("Core.Env")
+require("Core.Tick")
+require("Core.Base.BaseEnum")
+require("Core.Base.BaseClass")
+require("Core.Base.BaseView")
 
-Ann.Core = {}
-
--- local function RegistModule(role)
--- 	local BasePath = string.format("Core.%s", role)
-
--- end
-Ann.Core.EventManager = Ann.NewObject("Core.Both.EventManager")
-Ann.Core.SceneManager = Ann.NewObject("Core.Both.SceneManager")
-
--- local role = Ann.Env.Role
-
-if Ann.Env.Role == Ann.Define.ERole.Server then
-	--TODO
-elseif Ann.Env.Role == Ann.Define.ERole.Client then
-	Ann.Core.UIManager = Ann.NewObject("Core.Client.UIManager")
-	Ann.Core.HttpManager = Ann.NewObject("Core.Client.HttpManager")
-else
-	Ann.LogError("Unsupported app role", Ann.Env.Role)
-end
-
-Ann.Log("Ann Core module init finished")
+Ann.Log("Ann Base module init finished")

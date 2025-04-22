@@ -68,9 +68,8 @@ local function Class(clsName, ...)
 	cls.New = function(...)
 		local self = cls.__create and cls.__create(...) or {}
 		recursionsetmetatable(self, cls)
-		if self:Ctor(...) then
-			return self
-		end
+		self:Ctor(...)
+		return self
 	end
 	return cls
 end

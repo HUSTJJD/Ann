@@ -29,7 +29,6 @@ function BaseClass:Ctor(...)
 	if self.__bEnableTick then
 		Ann.Tick:AddLoopTicker(self.__TickInterval, self, self.OnTick)
 	end
-	return
 end
 
 ---析构函数
@@ -68,7 +67,7 @@ function BaseClass.OnReset(...) end
 ---@public
 ---@param deltaSeconds number 时间间隔
 function BaseClass:OnTick(deltaSeconds)
-	Ann.LogWarn("Unused Tick Function, Please Remove It!", self.__cname, deltaSeconds)
+	Ann.LogWarn("Unused Tick Function, Please Disable Object Tick!", self.__cname, deltaSeconds)
 end
 
 Ann.BaseClass = BaseClass

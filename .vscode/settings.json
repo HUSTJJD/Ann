@@ -23,4 +23,5 @@
     },
     "search.exclude": {},
     "formatFiles.extensionsToInclude": "**/*.lua",
+    "files.eol": "\n",
 }

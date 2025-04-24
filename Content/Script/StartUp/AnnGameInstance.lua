@@ -5,7 +5,6 @@ local AnnGameInstance = UnLua.Class()
 ---@private
 function AnnGameInstance:ReceiveInit()
 	require("ThirdParty.__Init__")
-	require("Base.__Init__")
 	require("Core.__Init__")
 	Ann.GameInstance = self
 end

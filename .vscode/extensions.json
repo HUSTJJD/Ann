@@ -6,6 +6,11 @@
         "tangzx.emmylua",
         "zxh404.vscode-proto3",
         "eamodio.gitlens",
-        "jbockle.jbockle-format-files"
+        "jbockle.jbockle-format-files",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.black-formatter",
+        "mbehr1.vsc-lfs"
     ]
 }

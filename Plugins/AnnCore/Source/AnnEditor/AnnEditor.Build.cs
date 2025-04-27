@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class AnnCore : ModuleRules
+public class AnnEditor : ModuleRules
 {
-	public AnnCore(ReadOnlyTargetRules Target) : base(Target)
+	public AnnEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
@@ -25,7 +25,7 @@ public class AnnCore : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core", 
+				"Core",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -37,8 +37,9 @@ public class AnnCore : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Slate",
-				"SlateCore",
-				"UnLua",
+				"SlateCore", 
+				"PythonScriptPlugin", 
+				"EditorScriptingUtilities",
 				"UMG",
 				"UMGEditor",
 				// ... add private dependencies that you statically link with here ...	

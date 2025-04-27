@@ -52,23 +52,27 @@ function BaseClass:Reset(...)
 	end
 end
 
+--region Interface
+
 ---初始化
 ---@public
-function BaseClass.OnInit(...) end
+function BaseClass:OnInit(...) end
 
 ---销毁
 ---@public
-function BaseClass.OnDestory() end
+function BaseClass:OnDestory() end
 
 ---重置
 ---@public
-function BaseClass.OnReset(...) end
+function BaseClass:OnReset(...) end
 
 ---@public
 ---@param deltaSeconds number 时间间隔
 function BaseClass:OnTick(deltaSeconds)
 	Ann.LogWarn("Unused Tick Function, Please Disable Object Tick!", self.__cname, deltaSeconds)
 end
+
+--endregion
 
 Ann.BaseClass = BaseClass
 

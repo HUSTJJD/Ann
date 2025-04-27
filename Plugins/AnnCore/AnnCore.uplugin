@@ -20,11 +20,16 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		},
-        {
-		"Name": "AnnGameplay",
-		"Type": "Runtime",
-		"LoadingPhase": "Default"
-	    }
+    {
+			"Name": "AnnGameplay",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+	  },
+		{
+			"Name": "AnnEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
 	],
 	"Plugins": [
 		{

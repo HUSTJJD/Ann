@@ -21,4 +21,5 @@ for %%f in (Tools\GitHook\hooks\\*) do (
 
 echo All hooks installed successfully.
 
-pause
+echo Install ptvsd for Python develop.
+..\AnnUnrealEngine\Engine\Binaries\ThirdParty\Python3\Win64\python -m pip install --upgrade ptvsd

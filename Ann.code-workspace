@@ -4,5 +4,8 @@
 			"name": "Ann",
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"dotnet.defaultSolution": "disable"
+	}
 }

@@ -81,3 +81,6 @@ IntelliSense/
 *.exp
 .idea/.idea.Ann/.idea
 *.user
+**/__pycache__
+Content/Developers
+Content/Collections

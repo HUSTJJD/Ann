@@ -25,12 +25,12 @@ def get_generate_enum_ui_code(flod_name, file_name):
         asset = unreal.EditorAssetLibrary.load_asset(asset_path)
         if isinstance(asset, unreal.WidgetBlueprint):
             name = asset.get_name()
-            window_name.append(f"---@field {name} string")
+            window_name.append(f"---@field {name} string\n")
     window_name.sort()
     generate = f"""\
 {AUTO_GENERATE_MARK_BEGIN}
 ---@class {file_name} : BaseEnum
-{''.join(window_name)}
+{"".join(window_name) if len(window_name) > 0 else ""}\
 local {file_name} = {{\n
 {AUTO_GENERATE_MARK_END}"""
     return generate

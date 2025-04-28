@@ -1,7 +1,6 @@
 --region GEN_EUI
 
 ---@class EUI_GAnn : BaseEnum
----@field UI_Root string
 local EUI_GAnn = {
 
 	--endregion GEN_EUI

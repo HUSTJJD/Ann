@@ -1,7 +1,7 @@
 --region GEN_EUI
 
 ---@class EUI_StartUp : BaseEnum
----@field UI_StartUp string
+---@field UI_Root string
 local EUI_StartUp = {
 
 	--endregion GEN_EUI

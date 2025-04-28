@@ -44,10 +44,13 @@
     "ignoreDir": [
       "Content/Script/ThirdParty",
       "Content/Script/UnLua",
-      "Plugins"
+      "Plugins",
+      "Intermediate"
     ],
     "ignoreGlobs": [],
-    "library": [],
+    "library": [
+      "IntelliSense"
+    ],
     "workspaceRoots": [
       "Content/Script/"
     ],

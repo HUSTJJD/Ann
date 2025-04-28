@@ -33,7 +33,7 @@ def get_asset_script_absolute_path(asset):
 def write_file(file_path, content):
     directory = os.path.dirname(file_path)
     os.makedirs(directory, exist_ok=True)
-    with open(file_path, "w") as f:
+    with open(file_path, "w", encoding="utf8", newline="\n") as f:
         f.writelines(content)
 
 

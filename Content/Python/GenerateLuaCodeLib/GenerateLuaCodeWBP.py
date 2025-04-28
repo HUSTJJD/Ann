@@ -189,12 +189,12 @@ def get_generate_view_code(name, class_name, exprot_infos):
 ---@field bp {name}_BP
 local {name} = Ann.Class("{name}", Ann.BaseView)
 -- 绑定蓝图事件
-function {name}:BindWidgetDelegate()\n{''.join(bind_native_events)}end\n
+function {name}:BindWidgetDelegate(){''.join(bind_native_events) if len(bind_native_events) > 0 else ' '}end\n
 function {name}:OnOpen(Data)
-    self:Init(Data)
-    self:InitView()
-    self:BindWidgetDelegate()
-    self:BindCustomEvent()
+\tself:Init(Data)
+\tself:InitView()
+\tself:BindWidgetDelegate()
+\tself:BindCustomEvent()
 end\n
 {AUTO_GENERATE_MARK_END}"""
     return generate
@@ -206,7 +206,7 @@ def get_template_view_code(name):
 {AUTO_GENERATE_MARK_END}
 -- 初始化数据
 function {name}:Init(Data)
-    self.Data = Data
+\tself.Data = Data
 end\n
 -- 初始化界面
 function {name}:InitView()\n
@@ -219,6 +219,7 @@ end\n
 --    return 0
 -- end\n
 function {name}:OnClose()\n
+\tself.Data = nil
 end\n
 return {name}
 """

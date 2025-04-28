@@ -5,7 +5,9 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import GenerateLuaCodeLib
 import importlib
+
 importlib.reload(GenerateLuaCodeLib)
+
 
 @unreal.uclass()
 class ToolMenuEntryScriptGenerateLuaCode(unreal.ToolMenuEntryScript):

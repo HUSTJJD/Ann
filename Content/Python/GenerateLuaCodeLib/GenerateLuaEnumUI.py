@@ -6,7 +6,7 @@ import importlib
 importlib.reload(FunctionLib)
 
 AUTO_GENERATE_MARK_BEGIN = "--region GEN_EUI\n"
-AUTO_GENERATE_MARK_END = "--endregion GEN_EUI\n"
+AUTO_GENERATE_MARK_END = "\t--endregion GEN_EUI\n"
 
 ignore_flods = [
     "Script",
@@ -40,10 +40,11 @@ def get_template_enum_ui_code(file_name):
     template = f"""\
 {AUTO_GENERATE_MARK_BEGIN}
 {AUTO_GENERATE_MARK_END}
---region {file_name}
+\t--region {file_name}
 
---endregion {file_name}
 
+
+\t--endregion {file_name}
 }}\n
 {file_name}.__EnumType = "string"\n
 setmetatable({file_name}, Ann.BaseEnum)\n

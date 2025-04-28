@@ -1,40 +1,40 @@
 local M = {}
 
 local function GetBooleanArg(Args, Name, DefaultValue)
-    if Args[Name] == nil then
-        return DefaultValue
-    end
-    return not not Args[Name]
+	if Args[Name] == nil then
+		return DefaultValue
+	end
+	return not not Args[Name]
 end
 
 local function MakeBinding(BindingClass, Args)
-    local Ret = BindingClass()
-    Ret.bConsumeInput = GetBooleanArg(Args, "ConsumeInput", true)
-    Ret.bExecuteWhenPaused = GetBooleanArg(Args, "ExecuteWhenPaused", false)
-    Ret.bOverrideParentBinding = GetBooleanArg(Args, "OverrideParentBinding", true)
-    return Ret
+	local Ret = BindingClass()
+	Ret.bConsumeInput = GetBooleanArg(Args, "ConsumeInput", true)
+	Ret.bExecuteWhenPaused = GetBooleanArg(Args, "ExecuteWhenPaused", false)
+	Ret.bOverrideParentBinding = GetBooleanArg(Args, "OverrideParentBinding", true)
+	return Ret
 end
 
 local function MakeLuaFunction(Module, Prefix, Handler, No)
-    local Name = string.format("%s_%d", Prefix, No)
-    if not Module[Name] then
-        Module[Name] = Handler
-        return Name
-    end
+	local Name = string.format("%s_%d", Prefix, No)
+	if not Module[Name] then
+		Module[Name] = Handler
+		return Name
+	end
 
-    return MakeLuaFunction(Module, Prefix, Handler, No + 1)
+	return MakeLuaFunction(Module, Prefix, Handler, No + 1)
 end
 
 local Modifiers = { "Ctrl", "Alt", "Shift", "Cmd" }
 
 local function GetModifierSuffix(Args)
-    local Array = { "" }
-    for _, Modifier in ipairs(Modifiers) do
-        if Args[Modifier] then
-            table.insert(Array, Modifier)
-        end
-    end
-    return table.concat(Array, "_")
+	local Array = { "" }
+	for _, Modifier in ipairs(Modifiers) do
+		if Args[Modifier] then
+			table.insert(Array, Modifier)
+		end
+	end
+	return table.concat(Array, "_")
 end
 
 --- 为当前模块绑定按键输入响应
@@ -44,37 +44,37 @@ end
 ---@param Handler fun(Key:FKey) @事件响应回调函数
 ---@param Args table @[opt]扩展参数 使用 Ctrl/Shift/Alt/Cmd = true 来控制组合键
 function M.BindKey(Module, KeyName, KeyEvent, Handler, Args)
-    Args = Args or {}
-    Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
-    local ModifierSuffix = GetModifierSuffix(Args)
-    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s%s", KeyName, KeyEvent, ModifierSuffix),
-        Handler, 0)
-    local Bindings = Module.__UnLuaInputBindings
-    table.insert(Bindings, function(Manager, Class)
-        local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputKeyDelegateBinding)
-        for _, OldBinding in pairs(BindingObject.InputKeyDelegateBindings) do
-            if OldBinding.FunctionNameToBind == FunctionName then
-                -- PIE下这个蓝图可能已经绑定过了
-                Manager:Override(Class, "InputAction", FunctionName)
-                return
-            end
-        end
+	Args = Args or {}
+	Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
+	local ModifierSuffix = GetModifierSuffix(Args)
+	local FunctionName =
+		MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s%s", KeyName, KeyEvent, ModifierSuffix), Handler, 0)
+	local Bindings = Module.__UnLuaInputBindings
+	table.insert(Bindings, function(Manager, Class)
+		local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputKeyDelegateBinding)
+		for _, OldBinding in pairs(BindingObject.InputKeyDelegateBindings) do
+			if OldBinding.FunctionNameToBind == FunctionName then
+				-- PIE下这个蓝图可能已经绑定过了
+				Manager:Override(Class, "InputAction", FunctionName)
+				return
+			end
+		end
 
-        local InputChord = UE.FInputChord()
-        InputChord.Key = UE.EKeys[KeyName]
-        InputChord.bShift = not not Args.Shift
-        InputChord.bCtrl = not not Args.Ctrl
-        InputChord.bAlt = not not Args.Alt
-        InputChord.bCmd = not not Args.Cmd
+		local InputChord = UE.FInputChord()
+		InputChord.Key = UE.EKeys[KeyName]
+		InputChord.bShift = not not Args.Shift
+		InputChord.bCtrl = not not Args.Ctrl
+		InputChord.bAlt = not not Args.Alt
+		InputChord.bCmd = not not Args.Cmd
 
-        local Binding = MakeBinding(UE.FBlueprintInputKeyDelegateBinding, Args)
-        Binding.InputChord = InputChord
-        Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
-        Binding.FunctionNameToBind = FunctionName
-        BindingObject.InputKeyDelegateBindings:Add(Binding)
+		local Binding = MakeBinding(UE.FBlueprintInputKeyDelegateBinding, Args)
+		Binding.InputChord = InputChord
+		Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
+		Binding.FunctionNameToBind = FunctionName
+		BindingObject.InputKeyDelegateBindings:Add(Binding)
 
-        Manager:Override(Class, "InputAction", FunctionName)
-    end)
+		Manager:Override(Class, "InputAction", FunctionName)
+	end)
 end
 
 --- 为当前模块绑定操作输入响应
@@ -84,28 +84,28 @@ end
 ---@param Handler fun(Key:FKey) @事件响应回调函数
 ---@param Args table @[opt]扩展参数
 function M.BindAction(Module, ActionName, KeyEvent, Handler, Args)
-    Args = Args or {}
-    Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
-    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s", ActionName, KeyEvent), Handler, 0)
-    local Bindings = Module.__UnLuaInputBindings
-    table.insert(Bindings, function(Manager, Class)
-        local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputActionDelegateBinding)
-        for _, OldBinding in pairs(BindingObject.InputActionDelegateBindings) do
-            if OldBinding.FunctionNameToBind == FunctionName then
-                -- PIE下这个蓝图可能已经绑定过了
-                Manager:Override(Class, "InputAction", FunctionName)
-                return
-            end
-        end
+	Args = Args or {}
+	Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
+	local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s_%s", ActionName, KeyEvent), Handler, 0)
+	local Bindings = Module.__UnLuaInputBindings
+	table.insert(Bindings, function(Manager, Class)
+		local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputActionDelegateBinding)
+		for _, OldBinding in pairs(BindingObject.InputActionDelegateBindings) do
+			if OldBinding.FunctionNameToBind == FunctionName then
+				-- PIE下这个蓝图可能已经绑定过了
+				Manager:Override(Class, "InputAction", FunctionName)
+				return
+			end
+		end
 
-        local Binding = MakeBinding(UE.FBlueprintInputActionDelegateBinding, Args)
-        Binding.InputActionName = ActionName
-        Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
-        Binding.FunctionNameToBind = FunctionName
-        BindingObject.InputActionDelegateBindings:Add(Binding)
+		local Binding = MakeBinding(UE.FBlueprintInputActionDelegateBinding, Args)
+		Binding.InputActionName = ActionName
+		Binding.InputKeyEvent = UE.EInputEvent["IE_" .. KeyEvent]
+		Binding.FunctionNameToBind = FunctionName
+		BindingObject.InputActionDelegateBindings:Add(Binding)
 
-        Manager:Override(Class, "InputAction", FunctionName)
-    end)
+		Manager:Override(Class, "InputAction", FunctionName)
+	end)
 end
 
 --- 为当前模块绑定轴输入响应
@@ -114,40 +114,40 @@ end
 ---@param Handler fun(AxisValue:number) @事件响应回调函数
 ---@param Args table @[opt]扩展参数
 function M.BindAxis(Module, AxisName, Handler, Args)
-    Args = Args or {}
-    Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
-    local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s", AxisName), Handler, 0)
-    local Bindings = Module.__UnLuaInputBindings
-    table.insert(Bindings, function(Manager, Class)
-        local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputAxisDelegateBinding)
-        for _, OldBinding in pairs(BindingObject.InputAxisDelegateBindings) do
-            if OldBinding.FunctionNameToBind == FunctionName then
-                -- PIE下这个蓝图可能已经绑定过了
-                Manager:Override(Class, "InputAxis", FunctionName)
-                return
-            end
-        end
+	Args = Args or {}
+	Module.__UnLuaInputBindings = Module.__UnLuaInputBindings or {}
+	local FunctionName = MakeLuaFunction(Module, string.format("UnLuaInput_%s", AxisName), Handler, 0)
+	local Bindings = Module.__UnLuaInputBindings
+	table.insert(Bindings, function(Manager, Class)
+		local BindingObject = Manager:GetOrAddBindingObject(Class, UE.UInputAxisDelegateBinding)
+		for _, OldBinding in pairs(BindingObject.InputAxisDelegateBindings) do
+			if OldBinding.FunctionNameToBind == FunctionName then
+				-- PIE下这个蓝图可能已经绑定过了
+				Manager:Override(Class, "InputAxis", FunctionName)
+				return
+			end
+		end
 
-        local Binding = MakeBinding(UE.FBlueprintInputAxisDelegateBinding, Args)
-        Binding.InputAxisName = AxisName
-        Binding.FunctionNameToBind = FunctionName
-        BindingObject.InputAxisDelegateBindings:Add(Binding)
+		local Binding = MakeBinding(UE.FBlueprintInputAxisDelegateBinding, Args)
+		Binding.InputAxisName = AxisName
+		Binding.FunctionNameToBind = FunctionName
+		BindingObject.InputAxisDelegateBindings:Add(Binding)
 
-        Manager:Override(Class, "InputAxis", FunctionName)
-    end)
+		Manager:Override(Class, "InputAxis", FunctionName)
+	end)
 end
 
 function M.PerformBindings(Module, Manager, Class)
-    local Bindings = Module.__UnLuaInputBindings
-    if not Bindings then
-        return
-    end
+	local Bindings = Module.__UnLuaInputBindings
+	if not Bindings then
+		return
+	end
 
-    for _, Binding in ipairs(Bindings) do
-        xpcall(Binding, function(Error)
-            Ann.LogError(Error .. "\n" .. debug.traceback())
-        end, Manager, Class)
-    end
+	for _, Binding in ipairs(Bindings) do
+		xpcall(Binding, function(Error)
+			Ann.LogError(Error .. "\n" .. debug.traceback())
+		end, Manager, Class)
+	end
 end
 
 return M

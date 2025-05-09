@@ -42,6 +42,7 @@ public class AnnEditor : ModuleRules
 				"EditorScriptingUtilities",
 				"UMG",
 				"UMGEditor",
+				"UnrealEd"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

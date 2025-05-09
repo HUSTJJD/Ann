@@ -6,15 +6,16 @@ local BP_StartUp_Server = UnLua.Class()
 --endregion GEN_BP
 
 -- BlueprintEvent
-function BP_StartUp_Server:ReceiveBeginPlay()
-	Ann.GameInstance:StartUp()
-end
+-- function BP_StartUp_Server:ReceiveBeginPlay()
+Ann.GameInstance:StartUp()
+-- end
 
 -- BlueprintEvent
 -- function BP_StartUp_Server:ReceiveEndPlay()
 
 -- end
 
+-- BlueprintEvent
 -- function BP_StartUp_Server:ReceiveTick()
 
 -- end

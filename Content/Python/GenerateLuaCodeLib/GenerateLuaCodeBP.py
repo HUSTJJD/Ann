@@ -58,6 +58,7 @@ def get_template_bp_code(name):
 -- BlueprintEvent
 -- function {name}:ReceiveEndPlay()\n
 -- end\n
+-- BlueprintEvent
 -- function {name}:ReceiveTick()\n
 -- end\n
 return {name}

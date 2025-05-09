@@ -38,9 +38,7 @@ public class AnnCore : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"UnLua",
-				"UMG",
-				"UMGEditor",
+				"UnLua"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

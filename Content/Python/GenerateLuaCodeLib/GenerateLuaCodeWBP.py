@@ -298,13 +298,23 @@ def get_view_code(widget_blueprint, out_content: list):
 
 
 def generate_lua_code_wbp(widget_blueprint):
+    bBindScript = unreal.AnnEditorBlueprintFunctionLib.get_blueprint_property(
+        widget_blueprint, "bBindScript"
+    )
+    if bBindScript != "True":
+        return
     if not check_widget_variable_name(widget_blueprint):
         return
     out_content = []
     if not get_view_code(widget_blueprint=widget_blueprint, out_content=out_content):
         return
-    # require_path = FunctionLib.get_asset_script_require_path(widget_blueprint)
     lua_path = FunctionLib.get_asset_script_absolute_path(widget_blueprint)
     FunctionLib.write_file(lua_path, out_content)
-    # widget_blueprint.set_editor_property('ViewScript', require_path)
+    require_path = FunctionLib.get_asset_script_require_path(widget_blueprint)
+    if require_path != unreal.AnnEditorBlueprintFunctionLib.get_blueprint_property(
+        widget_blueprint, "BindScriptPath"
+    ):
+        unreal.AnnEditorBlueprintFunctionLib.set_blueprint_property(
+            widget_blueprint, "BindScriptPath", require_path
+        )
     unreal.log(f"{LOG_MARKER}{widget_blueprint.get_name()}")

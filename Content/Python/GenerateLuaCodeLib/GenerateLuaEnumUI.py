@@ -9,6 +9,7 @@ AUTO_GENERATE_MARK_BEGIN = "--region GEN_EUI\n"
 AUTO_GENERATE_MARK_END = "\t--endregion GEN_EUI\n"
 
 ignore_flods = [
+    "Core",
     "Script",
     "Python",
     "Collections",

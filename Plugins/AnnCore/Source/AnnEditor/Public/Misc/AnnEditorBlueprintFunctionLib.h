@@ -34,12 +34,18 @@ class ANNEDITOR_API UAnnEditorBlueprintFunctionLib : public UBlueprintFunctionLi
 {
 	GENERATED_BODY()
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "AnnEditor Utilities")
 	static void RunPythonFileWithDialog(const FString& FilePath);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "AnnEditor Utilities")
 	static void GetWidgetTreeTypeName(UWidgetBlueprint* WidgetBlueprint, TArray<FString>& OutWidgetType, TArray<FString>& OutWidgetName);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "AnnEditor Utilities")
 	static void GetBlueprintExportInfo(const UBlueprint* Blueprint, TArray<FBlueprintExportInfo>& OutExportInfo);
+
+	UFUNCTION(BlueprintCallable, Category = "AnnEditor Utilities")
+	static void GetBlueprintProperty(const UBlueprint* Blueprint, const FName& PropertyName, FString& PropertyValue);
+
+	UFUNCTION(BlueprintCallable, Category = "AnnEditor Utilities")
+	static bool SetBlueprintProperty(UBlueprint* Blueprint, const FName& PropertyName, const FString& PropertyValue);
 };

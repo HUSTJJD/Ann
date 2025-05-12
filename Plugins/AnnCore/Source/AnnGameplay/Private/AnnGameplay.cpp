@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #include "AnnGameplay.h"
 
 #define LOCTEXT_NAMESPACE "FAnnGameplayModule"
@@ -16,5 +14,5 @@ void FAnnGameplayModule::ShutdownModule()
 }
 
 #undef LOCTEXT_NAMESPACE
-	
+
 IMPLEMENT_MODULE(FAnnGameplayModule, AnnGameplay)

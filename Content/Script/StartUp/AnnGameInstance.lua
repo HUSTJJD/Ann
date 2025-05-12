@@ -1,12 +1,13 @@
----@class AnnGameInstance Lua 入口
+---@class AnnGameInstance : UGameInstance Lua 入口
 local AnnGameInstance = UnLua.Class()
 
 ---Ann 启动
 ---@private
 function AnnGameInstance:ReceiveInit()
+	Ann = {}
+	Ann.GameInstance = self
 	require("ThirdParty.__Init__")
 	require("Core.__Init__")
-	Ann.GameInstance = self
 end
 
 ---Ann 关闭

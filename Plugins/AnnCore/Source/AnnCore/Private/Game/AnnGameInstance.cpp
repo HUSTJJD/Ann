@@ -1,6 +1,3 @@
-
-
-
 #include "Game/AnnGameInstance.h"
 
 void FAnnTickFunction::ExecuteTick(float DeltaTime, ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent)

@@ -10,7 +10,7 @@ function BaseView:OnInit(widget, widgetName, beCreate)
 end
 
 --- 析构
-function BaseView:OnDestory()
+function BaseView:OnClear()
 	self.bp = nil
 end
 

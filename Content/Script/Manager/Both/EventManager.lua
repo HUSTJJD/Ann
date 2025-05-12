@@ -8,7 +8,7 @@ function EventManager:OnInit()
 end
 
 --- 析构
-function EventManager:OnDestory() end
+function EventManager:OnClear() end
 
 --- 重置
 function EventManager:OnReset() end

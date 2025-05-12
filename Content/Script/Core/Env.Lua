@@ -6,6 +6,11 @@
 ---@field bServer boolean 是否服务器
 ---@field bClient boolean 是否客户端
 ---@field bEnableTick boolean 是否开启Tick
+---@field bShipping boolean BuildConfiguration
+---@field bTest boolean BuildConfiguration
+---@field bDevelopment boolean BuildConfiguration
+---@field bDebug boolean BuildConfiguration
+---@field bDebugGame boolean BuildConfiguration
 local Env = {
     EnvValue = {}
 }
@@ -39,13 +44,34 @@ local function CustomIndex(_, k)
     end
 end
 
-Env.Regist("LogVerbosity", Ann.Define.ELogVerbosity.Log, true)
-Env.Regist("LogTable", true, true)
-Env.Regist("Platform", Ann.Define.EPlatform.Windows, true)
-Env.Regist("Role", Ann.Define.ERole.Client, true)
-Env.Regist("bServer", Env.Role == Ann.Define.ERole.Server, true)
-Env.Regist("bClient", not Env.bServer, true)
+setmetatable(Env, { __index = CustomIndex })
+
+Ann.Env = Env
+
+local Platform = UE.UGameplayStatics.GetPlatformName()
+Env.Regist("Platform", Platform, true)
+
+local Role = Ann.Define.ERole.ListenServer
+if not UE.UKismetSystemLibrary.IsServer(Ann.GameInstance) then
+    Role = Ann.Define.ERole.Client
+elseif UE.UKismetSystemLibrary.IsDedicatedServer(Ann.GameInstance) then
+    Role = Ann.Define.ERole.DedicatedServer
+elseif UE.UKismetSystemLibrary.IsStandalone(Ann.GameInstance) then
+    Role = Ann.Define.ERole.Standalone
+end
+Env.Regist("Role", Role, true)
+Env.Regist("bDedicatedServer", Env.Role == Ann.Define.ERole.DedicatedServer, true)
+Env.Regist("bClient", Env.Role == Ann.Define.ERole.Client or Env.Role == Ann.Define.ERole.ListenServer, true)
+Env.Regist("bServer", not Env.bClient or Env.Role == Ann.Define.ERole.ListenServer, true)
 Env.Regist("bEnableTick", Env.bClient, true)
 
-setmetatable(Env, { __index = CustomIndex })
-Ann.Env = Env
+local BuildConfiguration = UE.UKismetSystemLibrary.GetBuildConfiguration()
+Env.Regist("bShipping", BuildConfiguration == "Shipping", true)
+Env.Regist("bTest", BuildConfiguration == "Test", true)
+Env.Regist("bDevelopment", BuildConfiguration == "Development", true)
+Env.Regist("bDebug", BuildConfiguration == "Debug", true)
+Env.Regist("bDebugGame", BuildConfiguration == "DebugGame", true)
+
+local LogVerbosity = Env.bShipping and Ann.Define.ELogVerbosity.Error or Ann.Define.ELogVerbosity.Log
+Env.Regist("LogVerbosity", LogVerbosity, true)
+Env.Regist("LogTable", not Env.bShipping, true)

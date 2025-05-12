@@ -1,5 +1,3 @@
-
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,9 +5,6 @@
 #include "AnnEditorBlueprintFunctionLib.generated.h"
 
 class UWidgetBlueprint;
-/**
- *
- */
 
 USTRUCT(BlueprintType)
 struct ANNEDITOR_API FBlueprintExportInfo

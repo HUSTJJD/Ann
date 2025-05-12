@@ -8,7 +8,7 @@ function ModelManager:OnInit()
 end
 
 --- 析构
-function ModelManager:OnDestory() end
+function ModelManager:OnClear() end
 
 --- 重置
 function ModelManager:OnReset() end

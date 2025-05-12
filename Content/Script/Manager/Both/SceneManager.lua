@@ -8,7 +8,7 @@ function SceneManager:OnInit()
 end
 
 ---@overload fun():void 析构
-function SceneManager:OnDestory() end
+function SceneManager:OnClear() end
 
 ---@overload fun(deltaSeconds:number):void 时钟
 --function SceneManager:OnTick(deltaSeconds)

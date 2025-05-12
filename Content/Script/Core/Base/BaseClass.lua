@@ -2,7 +2,7 @@
 ---@field __TickInterval int Tick频率
 ---@field __bEnableTick boolean 是否开启Tick
 ---@field __bSingleton boolean 是否单例
----@field __Role int 对象角色
+---@field __Role string 对象角色
 local BaseClass = Ann.Class("BaseClass")
 
 local function CheckObjetRole(ObjectType)
@@ -34,7 +34,7 @@ end
 ---析构函数
 ---@public
 function BaseClass:Destory()
-	self:OnDestory()
+	self:OnClear()
 	if self.__bEnableTick then
 		Ann.Tick:ClearObjRef(self)
 	end
@@ -60,7 +60,7 @@ function BaseClass:OnInit(...) end
 
 ---销毁
 ---@public
-function BaseClass:OnDestory() end
+function BaseClass:OnClear() end
 
 ---重置
 ---@public
@@ -91,7 +91,7 @@ local function NewObject(modulePath, ...)
 		Ann.LogError("Ann NewObject invalid modulePath", modulePath)
 		return
 	end
-	local _, obj = xpcall(module.New, Ann.LogError, ...) --[[@as any]]
+	local _, obj = xpcall(module.New, Ann.LogError, ...)
 	if obj and obj.__bSingleton then
 		Singletons[modulePath] = obj
 	end

@@ -7,7 +7,7 @@ function HttpManager:OnInit()
 end
 
 ---@overload fun():void 析构
-function HttpManager:OnDestory() end
+function HttpManager:OnClear() end
 
 ---@overload fun():void 重置
 function HttpManager:OnReset() end

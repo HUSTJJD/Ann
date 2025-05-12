@@ -1,7 +1,4 @@
-
-
 #include "Misc/AnnEditorBlueprintFunctionLib.h"
-
 #include "EditorDialogLibrary.h"
 #include "FileHelpers.h"
 #include "IPythonScriptPlugin.h"

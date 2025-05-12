@@ -1,12 +1,9 @@
-
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintPlatformLibrary.h"
 #include "UnLuaInterface.h"
 #include "AnnGameInstance.generated.h"
-
 
 class UAnnGameInstance;
 
@@ -29,14 +26,14 @@ struct FAnnTickFunction : public FTickFunction
 	{
 		return FName(TEXT("FAnnTickFunction"));
 	}
-	
+
 	void SetGameInstance(UAnnGameInstance* Instance) { GameInstance = Instance; }
 
 private:
 	TWeakObjectPtr<UAnnGameInstance> GameInstance;
 };
 
-template<>
+template <>
 struct TStructOpsTypeTraits<FAnnTickFunction> : public TStructOpsTypeTraitsBase2<FAnnTickFunction>
 {
 	enum
@@ -45,12 +42,11 @@ struct TStructOpsTypeTraits<FAnnTickFunction> : public TStructOpsTypeTraitsBase2
 	};
 };
 
-
 UCLASS()
 class ANNCORE_API UAnnGameInstance : public UPlatformGameInstance, public IUnLuaInterface
 {
 	GENERATED_BODY()
-	
+
 	virtual FString GetModuleName_Implementation() const override;
 
 public:

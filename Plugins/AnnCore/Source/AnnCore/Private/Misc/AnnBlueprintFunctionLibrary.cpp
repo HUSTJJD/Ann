@@ -1,5 +1,3 @@
-
-
 #include "Misc/AnnBlueprintFunctionLibrary.h"
 
 void UAnnBlueprintFunctionLibrary::FindFiles(const FString& InPath, const FString& Extension, const bool bRecursively, TArray<FString>& OutFiles)

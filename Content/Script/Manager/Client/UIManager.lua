@@ -7,7 +7,7 @@ function UIManager:OnInit()
 end
 
 ---@overload fun():void 析构
-function UIManager:OnDestory() end
+function UIManager:OnClear() end
 
 ---@overload fun(deltaSeconds:number):void 时钟
 --function UIManager:OnTick(deltaSeconds)

@@ -26,6 +26,7 @@ class ToolMenuEntryScriptGenerateLuaCode(unreal.ToolMenuEntryScript):
         for asset in selected_assets:
             GenerateLuaCodeLib.generate_lua_code_for_asset(asset)
         GenerateLuaCodeLib.generate_lua_enum_ui()
+        GenerateLuaCodeLib.generate_lua_enum_asset()
 
     @unreal.ufunction(override=True)
     def get_label(self, context):

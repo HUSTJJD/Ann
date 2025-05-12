@@ -17,8 +17,8 @@ end
 ---@private
 function BaseClass:Ctor(...)
 	self.__TickInterval = 0
-	self.__bEnableTick = false
-	self.__bSingleton = false
+	-- self.__bEnableTick = false
+	-- self.__bSingleton = false
 	self.__Role = Ann.Define.ERole.Client
 	self:OnInit(...)
 	if CheckObjetRole(self.__Role) then

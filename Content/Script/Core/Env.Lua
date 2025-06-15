@@ -32,7 +32,7 @@ function Env.Regist(property, value, readOnly)
     }
 end
 
-local function CustomIndex(_, k)
+local function IndexFunction(_, k)
     local property = Env.EnvValue[k]
     if property == nil then
         return
@@ -45,7 +45,7 @@ local function CustomIndex(_, k)
     end
 end
 
-setmetatable(Env, { __index = CustomIndex })
+setmetatable(Env, { __index = IndexFunction })
 
 Ann.Env = Env
 

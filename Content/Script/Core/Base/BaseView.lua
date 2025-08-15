@@ -2,11 +2,9 @@
 local BaseView = Ann.Class("BaseView", Ann.BaseClass)
 
 --- 构造
-function BaseView:OnInit(widget, widgetName, beCreate)
+function BaseView:OnInit(widget, widgetName)
 	self.bp = widget
-	self.m_beCache = widget and widget.beCache
 	self.m_widgetName = widgetName
-	self.m_bNewCreate = beCreate
 end
 
 --- 析构

@@ -12,9 +12,10 @@ function HttpManager:OnClear() end
 ---@overload fun():void 重置
 function HttpManager:OnReset() end
 
+--[[
 ---@overload fun(deltaSeconds:number):void 时钟
---function HttpManager:OnTick(deltaSeconds)
-
---end
+function HttpManager:OnTick(deltaSeconds)
+end
+]]
 
 return HttpManager

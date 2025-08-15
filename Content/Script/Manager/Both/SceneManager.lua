@@ -10,9 +10,10 @@ end
 ---@overload fun():void 析构
 function SceneManager:OnClear() end
 
+--[[
 ---@overload fun(deltaSeconds:number):void 时钟
---function SceneManager:OnTick(deltaSeconds)
-
---end
+function SceneManager:OnTick(deltaSeconds)
+end
+]]
 
 return SceneManager

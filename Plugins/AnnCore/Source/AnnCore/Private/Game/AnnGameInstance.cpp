@@ -8,11 +8,6 @@ void FAnnTickFunction::ExecuteTick(float DeltaTime, ELevelTick TickType, ENamedT
 	}
 }
 
-FString UAnnGameInstance::GetModuleName_Implementation() const
-{
-	return TEXT("Startup.AnnGameInstance");
-}
-
 void UAnnGameInstance::Init()
 {
 	Super::Init();

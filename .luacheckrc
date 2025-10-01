@@ -7,12 +7,11 @@ globals                 = {
 }
 
 include_files           = {
-    'Content/Script/**/*.lua',
+    'Content/**/*.lua',
 }
 
 exclude_files           = {
-    'Content/Script/ThirdParty/**/*.lua',
-    'Content/Script/UnLua/**/*.lua',
+    'Content/UnLua/**/*.lua',
 }
 
 ignore                  = {

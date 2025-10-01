@@ -43,11 +43,9 @@ struct TStructOpsTypeTraits<FAnnTickFunction> : public TStructOpsTypeTraitsBase2
 };
 
 UCLASS()
-class ANNCORE_API UAnnGameInstance : public UPlatformGameInstance, public IUnLuaInterface
+class ANNCORE_API UAnnGameInstance : public UPlatformGameInstance
 {
 	GENERATED_BODY()
-
-	virtual FString GetModuleName_Implementation() const override;
 
 public:
 	virtual void Init() override;

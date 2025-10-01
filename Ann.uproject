@@ -219,6 +219,10 @@
 		{
 			"Name": "PythonFoundationPackages",
 			"Enabled": true
+		},
+		{
+			"Name": "Iris",
+			"Enabled": true
 		}
 	]
 }

@@ -25,7 +25,10 @@ public class AnnGameplay : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core",
+				"Core", 
+				"GameplayAbilities", 
+				"GameplayTags", 
+				"GameplayTasks",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -39,7 +42,7 @@ public class AnnGameplay : ModuleRules
 				"Slate",
 				"SlateCore",
 				"InputCore", 
-				"EnhancedInput"
+				"EnhancedInput",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
@@ -51,5 +54,7 @@ public class AnnGameplay : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
-	}
+
+		SetupIrisSupport(Target);
+    }
 }

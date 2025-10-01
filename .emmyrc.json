@@ -42,8 +42,7 @@
   },
   "workspace": {
     "ignoreDir": [
-      "Content/Script/ThirdParty",
-      "Content/Script/UnLua",
+      "Content/UnLua/",
       "Plugins",
       "Intermediate"
     ],
@@ -52,7 +51,7 @@
       "IntelliSense"
     ],
     "workspaceRoots": [
-      "Content/Script/"
+      "Content/"
     ],
     "preloadFileSize": 0,
     "encoding": "utf-8",

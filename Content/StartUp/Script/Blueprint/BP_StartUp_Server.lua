@@ -1,7 +1,7 @@
 --region GEN_BP
 
 ---@class BP_StartUp_Server
-local BP_StartUp_Server = UnLua.Class()
+local BP_StartUp_Server = UnLuaNova.Class()
 
 --endregion GEN_BP
 

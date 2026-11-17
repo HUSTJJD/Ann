@@ -33,17 +33,17 @@ local function Print(func, verbosity, ...)
 end
 
 local function Log(...)
-	Print(UnLua.Log, Ann.Define.ELogVerbosity.Log, ...)
+	Print(UnLuaNova.Log, Ann.Define.ELogVerbosity.Log, ...)
 end
 
 local function LogWarn(...)
-	Print(UnLua.LogWarn, Ann.Define.ELogVerbosity.Warn, ...)
+	Print(UnLuaNova.LogWarn, Ann.Define.ELogVerbosity.Warn, ...)
 end
 
 local function LogError(...)
-	Print(UnLua.LogError, Ann.Define.ELogVerbosity.Error, ...)
+	Print(UnLuaNova.LogError, Ann.Define.ELogVerbosity.Error, ...)
 	local trace = debug.traceback(nil, 2)
-	Print(UnLua.LogError, Ann.Define.ELogVerbosity.Error, trace)
+	Print(UnLuaNova.LogError, Ann.Define.ELogVerbosity.Error, trace)
 end
 
 Ann.Log = Log

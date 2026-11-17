@@ -14,7 +14,7 @@
     "enable": true,
     "globals": [
       "Ann",
-      "UnLua",
+      "UnLuaNova",
       "UE",
       "rapidjson"
     ],

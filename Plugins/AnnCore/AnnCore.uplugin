@@ -33,7 +33,7 @@
 	],
 	"Plugins": [
 		{
-			"Name": "UnLua",
+			"Name": "UnLuaNova",
 			"Enabled": true
 		},
 		{

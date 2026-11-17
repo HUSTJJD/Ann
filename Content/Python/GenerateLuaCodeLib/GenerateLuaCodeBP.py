@@ -43,7 +43,7 @@ def get_generate_bp_code(name, class_name, exprot_infos):
 {AUTO_GENERATE_MARK_BEGIN}
 ---@class {name}
 {''.join(props)}\
-local {name} = UnLua.Class()\n
+local {name} = UnLuaNova.Class()\n
 {AUTO_GENERATE_MARK_END}"""
     return generate
 

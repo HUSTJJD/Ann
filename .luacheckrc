@@ -1,7 +1,7 @@
 std                     = "lua53"
 globals                 = {
     'Ann',
-    'UnLua',
+    'UnLuaNova',
     'UE',
     'rapidjson',
 }

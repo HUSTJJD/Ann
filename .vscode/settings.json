@@ -20,7 +20,6 @@
         "Plugins/**/Binaries": true,
         "Plugins/**/Intermediate": true,
         "Plugins/**/ThirdParty/[!U]**": true,
-        "Plugins/**/ThirdParty/UnLuaExtensions" : true,
         "Saved/": true,
         "Content/Collections": true,
         "Content/Developers": true,

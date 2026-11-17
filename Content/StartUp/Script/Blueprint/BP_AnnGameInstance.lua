@@ -1,5 +1,5 @@
 ---@class BP_AnnGameInstance : UAnnGameInstance Lua 入口
-local BP_AnnGameInstance = UnLua.Class()
+local BP_AnnGameInstance = UnLuaNova.Class()
 ---Ann 启动
 ---@private
 function BP_AnnGameInstance:ReceiveInit()

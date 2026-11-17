@@ -85,3 +85,12 @@ IntelliSense/
 Content/Developers
 Content/Collections
 enc_temp_folder
+# -- VS solutions (UE6 GenerateProjectFiles emits .slnx) --
+*.slnx
+
+# -- Local agent workspace data (never commit) --
+.workbuddy/
+
+# -- Plugin release artifacts --
+dist/
+*.zip.sha256

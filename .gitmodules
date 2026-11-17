@@ -1,0 +1,12 @@
+[submodule "Plugins/UEAssetLens"]
+	path = Plugins/UEAssetLens
+	url = https://github.com/HUSTJJD/UEAssetLens.git
+	branch = main
+[submodule "Plugins/UEAbilityKit"]
+	path = Plugins/UEAbilityKit
+	url = https://github.com/HUSTJJD/UEAbilityKit.git
+	branch = main
+[submodule "Plugins/UnLuaNova"]
+	path = Plugins/UnLuaNova
+	url = https://github.com/HUSTJJD/UnLuaNova.git
+	branch = master

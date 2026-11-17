@@ -223,6 +223,34 @@
 		{
 			"Name": "Iris",
 			"Enabled": true
+		},
+		{
+			"Name": "UEAssetLens",
+			"Enabled": true
+		},
+		{
+			"Name": "UEAbilityKit",
+			"Enabled": true
+		},
+		{
+			"Name": "UnLuaNova",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaProtobuf",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaRapidjson",
+			"Enabled": true
+		},
+		{
+			"Name": "LuaSocket",
+			"Enabled": true
+		},
+		{
+			"Name": "UnLuaNovaTestSuite",
+			"Enabled": false
 		}
 	]
 }

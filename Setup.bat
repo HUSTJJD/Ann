@@ -9,6 +9,16 @@ if not exist ".git" (
     exit /b 1
 )
 
+REM -- Project plugins are tracked as top-level git submodules.
+REM    A plain clone leaves Plugins/UE* empty; always initialise them.
+echo Initializing plugin submodules...
+git submodule update --init --recursive
+if errorlevel 1 (
+    echo ERROR: failed to initialize plugin submodules.
+    exit /b 1
+)
+
+
 if not exist ".git\hooks" (
     mkdir ".git\hooks"
 )

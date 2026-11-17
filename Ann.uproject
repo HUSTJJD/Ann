@@ -187,13 +187,13 @@
 			"Name": "GooglePAD",
 			"Enabled": false
 		},
-        {
+		{
 			"Name": "GameplayAbilities",
 			"Enabled": true
 		},
 		{
 			"Name": "VisualStudioTools",
-			"Enabled": true,
+			"Enabled": false,
 			"SupportedTargetPlatforms": [
 				"Win64"
 			]

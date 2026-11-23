@@ -255,6 +255,41 @@
 		{
 			"Name": "UnLuaNovaTestSuite",
 			"Enabled": false
+		},
+		{
+			"Name": "ModelContextProtocol",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "ToolsetRegistry",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AllToolsets",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "CrashDiagnosticsToolset",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "GeometryToolset",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
 		}
 	]
 }

@@ -10,3 +10,7 @@
 	path = Plugins/UnLuaNova
 	url = https://github.com/HUSTJJD/UnLuaNova.git
 	branch = master
+[submodule "Plugins/UEYaml"]
+	path = Plugins/UEYaml
+	url = https://github.com/HUSTJJD/UEYaml.git
+	branch = main

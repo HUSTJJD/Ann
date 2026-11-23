@@ -225,6 +225,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "UEYaml",
+			"Enabled": true
+		},
+		{
 			"Name": "UEAssetLens",
 			"Enabled": true
 		},

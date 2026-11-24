@@ -237,7 +237,7 @@ python Tools/audit_engine_toolsets.py --check-enablement
 dotnet D:/learning/AnnBuildTools/AnnUnrealEngine/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll ^
   -Mode=QueryTargets -Project=D:/learning/AnnBuildTools/Ann/Ann.uproject
 
-# 4) 完整编译（在有合格工具链的环境执行）
+# 4) 完整编译（2026-11-24 已验证通过）
 D:/learning/AnnBuildTools/AnnUnrealEngine/Engine/Build/BatchFiles/Build.bat ^
   AnnEditor Win64 Development -Project=D:/learning/AnnBuildTools/Ann/Ann.uproject -WaitMutex
 
@@ -251,31 +251,37 @@ D:/learning/AnnBuildTools/AnnUnrealEngine/Engine/Build/BatchFiles/Build.bat ^
 | `--check` | **通过**：inventory 与引擎树一致 |
 | `--check-enablement` | **通过**：5 个 Editor-only 启用项，156 个插件依赖闭包，0 个硬缺失 / 0 个可选缺失 |
 | `-Mode=QueryTargets` | **通过**：UBT 成功解析工程并写出 `Intermediate/TargetInfo.json` |
-| `AnnEditor` 编译 | **未完成**，见下 |
+| `AnnEditor` 编译 | **通过**：`Result: Succeeded`，4450/4450 actions，0 error，90 个存量 `C4996` 警告 |
 
-### 编译验证的阻断原因（与本次配置无关）
+### 编译验证结果（2026-11-24）
 
-修改 `.uproject` 会让 UBT **重建 makefile**，从而重新探测 MSVC 工具链；此前 6 次增量编译
-因复用缓存 makefile 而未触发该探测，均成功。重建时报：
+`AnnEditor Win64 Development` 全量构建 **Result: Succeeded**：4450/4450 actions、
+0 error、90 个 `C4996` 警告、耗时 15072 秒（约 4 小时 11 分，UBA executor 14708 秒）。
+这是引擎级全量重编，由 `.uproject` 变更与 42 个 Toolset 依赖改变模块 / PCH 依赖图触发，
+属一次性代价，后续增量构建会显著加快。
 
-```
-Visual Studio is installed, but is out of date or missing a valid C++ toolchain
-(minimum version 14.50.35723, preferred version 14.50.35717).
-```
+此前「工具链探测阻断」已自行消失：失败时 UBT 用 MSVC **目录名** `14.50.35717` 判定
+（低于引擎 `MinimumVisualCppVersion = 14.50.35723`），本次重建 makefile 时读到的是
+编译器实际版本 `14.50.35740`，`HasValidCompiler` 通过。之前尝试的
+`-CompilerVersion=Latest` / `=14.52.37025` / `=14.50.35738` 均非必需，也未改动
+引擎 `Engine/Config/Windows/Windows_SDK.json`。
 
-根因是本机 `Engine/Config/Windows/Windows_SDK.json` 要求 `MinimumVisualCppVersion =
-14.50.35723`（注释说明 14.50.35717 存在内部编译器错误，14.50.35723 已修复），而本机
-MSVC 目录名为 `14.50.35717`；缓存 makefile 里记录的却是注册表/编译器版本
-`14.50.35738`，所以增量编译能通过、重建 makefile 不能。`-CompilerVersion=Latest` /
-`=14.52.37025` / `=14.50.35738` 三种写法均无法绕过 `HasValidCompiler` 的全局检查。
+本次构建实际验证到的内容：
 
-**修复建议**：通过 VS Installer 把 MSVC 组件更新到目录版本 ≥ `14.50.35723`（本机另有
-`14.52.37025`，但超出引擎 `PreferredVisualCppVersions: 14.50.35717-14.50.99999` 范围）。
-不建议为绕过校验去改引擎的 `Windows_SDK.json`。工具链修好后重跑第 4 步即可确认
-5 条启用项及其 42 个 Toolset 依赖能编译链接。
+- 5 条 Editor-only 启用项及其 42 个 Toolset 依赖全部编译链接，引擎插件目录产出
+  **67 个** MCP / Toolset DLL（`ModelContextProtocol`、`ToolsetRegistry`、`EditorToolset`、
+  `BlueprintToolsets`、`NiagaraToolsets`、`MetaSoundToolset`、`PCGToolset` 等）。
+- `[1139/4450] Link UnrealEditor-UEYaml.dll` 成功，确认 UE6 下 `DEFAULTS` 宏隔离与
+  rapidyaml 4 行补丁在完整依赖图下成立。
+- `UnrealEditor-UEAssetLensMCP.dll`、`UnrealEditor-Ann.dll` 及三个插件的全部编辑器 DLL
+  均成功链接，此前挂着的 `UEYAML_API` 导出与 8 个模块链接风险闭环。
+- 90 个警告全部是 `C4996: UE::Logging::Private::DeprecatedLog`（UE6 废弃日志 API），
+  分布在 UAK / UAL 既有业务文件，属**存量技术债**，非本次改动引入；此前增量编译未重编
+  这些文件，故显示 0 warning。UBT 当前未将其提升为 error，不阻塞构建。
 
-> 注意：本仓库此前 YAML 改造的 `AnnEditor Win64 Development` 编译是**成功**的
-> （`Result: Succeeded`，UEYaml.dll 与三个插件 DLL 全部链接），那次未改动 `.uproject`。
+**边界**：本次只编译 **AnnEditor** target（5 条启用项带 `TargetAllowList: ["Editor"]`，
+按设计不进 Game / Client / Server）。编译通过不等于运行正确——编辑器启动、官方 MCP
+`tools/list`、YAML 往返与 UAK 自动化教程 / 测试仍未验证，是下一步。
 
 ## 7. 硬约束
 
